@@ -1,0 +1,30 @@
+{
+  "name": "snowflake-expansion-engine",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.33.0",
+  "type": "module",
+  "scripts": {
+    "dev": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next dev",
+    "build": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next build",
+    "start": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next start",
+    "lint": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next lint"
+  },
+  "dependencies": {
+    "next": "15.5.9",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "npm": "10.9.4",
+    "@types/node": "22.18.6",
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "autoprefixer": "10.4.21",
+    "eslint": "8.57.1",
+    "eslint-config-next": "15.5.9",
+    "postcss": "8.5.6",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.9.2"
+  }
+}
