@@ -8,6 +8,7 @@ function makeAccount(
     name: string;
     tier: AccountTier;
     industry: string;
+    briefDescriptor: string;
     why_now: string;
     whats_broken: string;
     hypothesis: string;
@@ -29,16 +30,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "Vertex Pharmaceuticals",
     tier: 1,
     industry: "Pharma / Life Sciences",
+    briefDescriptor:
+      "Global biotech; Snowflake live for enterprise workloads, while R&D and commercial still default to SAS and exports.",
     why_now:
       "Major trial readouts this year; commercial analytics is being asked to move at drug-development speed.",
     whats_broken:
       "Snowflake consumption is concentrated in IT-led pipelines while R&D and commercial teams still export to SAS and spreadsheets.",
     hypothesis:
-      "If we land Snowpark ML + governed sharing with R&D first, commercial and manufacturing will follow without a second platform sale.",
+      "The risk is not Snowflake capacity; it’s that R&D and commercial still treat SAS and exports as the only “real” modeling surface.",
     first_workload:
       "Clinical trial cohort scoring in Snowpark ML with OMOP-aligned synthetic data — prove sub-minute iteration vs overnight SAS.",
     proof_point:
-      "Peer accounts replaced SAS scoring loops with Snowpark ML and cut model refresh from weeks to hours.",
+      "In 48 hours: working cohort score in Snowflake + timed run vs the SAS job — numbers on the wall, not a slide.",
     economic_impact:
       "Faster trial analytics cycles → earlier portfolio decisions; commercial targeting apps reduce agency and BI ticket load.",
     deal_path: {
@@ -61,16 +64,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "JPMorgan Chase",
     tier: 1,
     industry: "Financial Services",
+    briefDescriptor:
+      "Global bank; Snowflake in production for analytics, while desk and risk workflows still split across tools and exports.",
     why_now:
       "Basel timelines and exam prep are forcing faster risk aggregation without new data movement projects.",
     whats_broken:
       "Snowflake exists for analytics, but front-office and risk still treat it as a warehouse — not a compute layer for models and narratives.",
     hypothesis:
-      "A risk + compliance wedge (Cortex Analyst + lineage) opens the door to quant and AML teams already blocked on export policies.",
+      "The risk is not missing a warehouse; it’s that risk and compliance can’t ask and defend a regulatory answer in one governed hop.",
     first_workload:
       "Risk aggregation + plain-English regulatory query on synthetic counterparty exposure with full lineage in one environment.",
     proof_point:
-      "Similar banks cut time-to-answer for regulatory questions from days to minutes without new infrastructure.",
+      "In 24–48 hours: Cortex Analyst on aggregated risk tables — one live question answered with lineage in the session.",
     economic_impact:
       "Fewer parallel platforms (Spark/SAS), faster exams, reduced operational risk from manual reporting.",
     deal_path: {
@@ -88,16 +93,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "Kaiser Permanente",
     tier: 2,
     industry: "Healthcare",
+    briefDescriptor:
+      "Integrated delivery network; Epic is the system of record, Snowflake underused for member intelligence at the edge.",
     why_now:
       "VBC contract expansion requires daily attribution — weekly batch risk scores are now a quality and revenue problem.",
     whats_broken:
       "Epic remains the system of record; analysts wait on extracts while Snowflake is underused for member-level intelligence.",
     hypothesis:
-      "Bulk FHIR + Streamlit analyst apps win clinical informatics; revenue cycle ML funds the next tranche.",
+      "The risk is not Epic data; it’s that care and analytics teams can’t act on governed member intelligence without ticket queues.",
     first_workload:
       "Population health plain-language query (Cortex Analyst) on attributed member data — care managers self-serve without tickets.",
     proof_point:
-      "Integrated systems cut BI backlog for care gaps by giving governed self-service on live data.",
+      "In 48 hours: one governed Cortex Analyst question on live attributed data — list in hand, no BI ticket.",
     economic_impact:
       "Fewer readmissions and admin cost; faster revenue cycle resolution from denial prediction.",
     deal_path: {
@@ -115,16 +122,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "Siemens Digital Industries",
     tier: 2,
     industry: "Manufacturing / Industrial",
+    briefDescriptor:
+      "Industrial automation leader; OT historians and MES hold truth, Snowflake not yet the operational nervous system.",
     why_now:
       "Plant consolidation and Industry 4.0 mandates require OT data in one place — board is watching downtime minutes.",
     whats_broken:
       "Historians and MES hold the truth; Snowflake is a sidecar instead of the real-time operational layer.",
     hypothesis:
-      "Historian → Dynamic Tables → Streamlit proves predictive maintenance ROI faster than another point solution.",
+      "The risk is not more sensors; it’s that OT truth never reaches the layer where maintenance and finance actually decide.",
     first_workload:
       "Multi-line sensor dashboard with anomaly flags from streaming historian feeds into Snowflake.",
     proof_point:
-      "Manufacturers reduced unplanned downtime by surfacing anomalies hours before failure on unified OT data.",
+      "In 48 hours: streaming historian slice → Snowflake dashboard with one anomaly drill — time-to-flag in the room.",
     economic_impact:
       "Downtime avoidance + supplier risk visibility; FP&A variance reporting at close without Excel marathons.",
     deal_path: {
@@ -147,16 +156,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "UnitedHealth Group",
     tier: 2,
     industry: "Healthcare",
+    briefDescriptor:
+      "National payer; heavy Snowflake spend, uneven activation across payer and clinical analytics teams.",
     why_now:
       "Stars and HEDIS pressure is visible in executive OKRs; analytics teams are being asked for daily intervention lists.",
     whats_broken:
       "Snowflake spend is growing but persona coverage is uneven — payer analytics and clinical still siloed.",
     hypothesis:
-      "Tie Snowflake activation to Stars/HEDIS automation and denial prevention to align payer and provider stakeholders.",
+      "The risk is not weekly batch scoring; it’s that Stars and HEDIS incentives require daily intervention lists nobody can produce on demand.",
     first_workload:
       "Daily risk stratification refresh (Dynamic Tables + Snowpark ML) replacing weekly batch scoring.",
     proof_point:
-      "Health plans improved gap closure rates when risk scores refreshed daily vs weekly.",
+      "In 48 hours: daily refresh DAG + before/after score freshness on one market — gap closure list in the meeting.",
     economic_impact:
       "Quality bonus preservation + revenue integrity; lower cost of care through earlier interventions.",
     deal_path: {
@@ -174,16 +185,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "Novartis",
     tier: 3,
     industry: "Pharma / Life Sciences",
+    briefDescriptor:
+      "Top-tier pharma; platform present, expansion opportunistic until a regulatory or trial trigger creates urgency.",
     why_now:
       "Pipeline and launch calendar is active but expansion is opportunistic — monitor for regulatory or M&A signals.",
     whats_broken:
       "Same pattern as peers: platform present, personas under-mapped, Snowpark and governance under-activated.",
     hypothesis:
-      "A narrow clinical or R&D win can resurface when trial or compliance triggers hit.",
+      "The risk is not Snowflake capacity; it’s that activation waits for a trigger instead of a named wedge and owner.",
     first_workload:
       "RWE clean room join demo (claims + EHR) when data-sharing pain resurfaces in vendor discussions.",
     proof_point:
-      "Clean room wins shortened vendor negotiations from months to weeks at comparable pharmas.",
+      "In 48 hours: working clean room join + “what neither party sees” walkthrough — legal posture in one session.",
     economic_impact:
       "Faster RWE studies; reduced vendor duplicative spend.",
     deal_path: {
@@ -201,16 +214,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "Wells Fargo",
     tier: 3,
     industry: "Financial Services",
+    briefDescriptor:
+      "National bank; Snowflake in place, front-office and compliance adoption still initiative-by-initiative.",
     why_now:
       "Transformation milestones are episodic — best entry is aligned to exam, integration, or digital initiative news.",
     whats_broken:
       "Snowflake footprint without full front-office and compliance adoption — expansion is motion-dependent.",
     hypothesis:
-      "Use case mapping motions work when tied to a named initiative rather than generic platform upsell.",
+      "The risk is not footprint; it’s that expansion only lands when tied to a named initiative with a single owner.",
     first_workload:
       "Advisor next-best-action Streamlit when wealth leadership prioritizes advisor tooling.",
     proof_point:
-      "Wealth units increased advisor actions per model when scoring was surfaced in-workflow.",
+      "In 48 hours: Streamlit slice of advisor book + propensity — one rep workflow, no BI export.",
     economic_impact:
       "AUM and cross-sell lift; reduced time spent on manual client prioritization.",
     deal_path: {
@@ -228,16 +243,18 @@ export const ACCOUNTS: AccountConfig[] = [
     name: "Mayo Clinic",
     tier: 3,
     industry: "Healthcare",
+    briefDescriptor:
+      "Academic medical center; strong governance; Snowflake wins require PHI posture and research alignment.",
     why_now:
       "Research and clinical operations compete for attention — opportunistic entry on IRB or Epic-adjacent projects.",
     whats_broken:
       "Strong IT governance can slow activation; Snowflake wins require clear PHI posture and research alignment.",
     hypothesis:
-      "PHI masking + clean room demo resonates when research expansion is on the roadmap.",
+      "The risk is not governance; it’s that research and ops can’t share a PHI story without a provable clean room path.",
     first_workload:
       "De-identification + clean room for research cohorts when IRB pushes on data access boundaries.",
     proof_point:
-      "Academic medical centers accelerated trial recruitment with governed research sandboxes.",
+      "In 48 hours: masked PHI view + clean room aggregate query — IRB-ready story in one walkthrough.",
     economic_impact:
       "Research throughput; reduced compliance review cycles per study.",
     deal_path: {

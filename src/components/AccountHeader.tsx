@@ -14,12 +14,7 @@ const TAB_LABELS: Record<TabKey, string> = {
   "exec-triggers": "Exec Triggers"
 };
 
-const TIER_LABEL: Record<AccountConfig["tier"], string> = {
-  1: "Tier 1 · Primary focus",
-  2: "Tier 2 · Active expansion",
-  3: "Tier 3 · Monitor / opportunistic"
-};
-
+/** Sticky tab bar; account identity lives in Account Overview above. */
 export function AccountHeader({
   account,
   activeTab,
@@ -33,32 +28,24 @@ export function AccountHeader({
 }) {
   return (
     <div className="sticky top-0 z-10 border-b border-sf-border bg-white/95 backdrop-blur">
-      <div className="flex items-center justify-between gap-4 px-6 py-4">
+      <div className="flex items-center justify-between gap-4 px-6 py-3">
         <div className="flex min-w-0 items-center gap-3">
           <div
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-sf-border bg-sf-surface-muted text-sf-foreground-muted shadow-panel"
+            className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-sf-border bg-sf-surface-muted text-sf-foreground-muted shadow-panel"
             aria-hidden="true"
           >
-            <TerritoryGlyph iconKey={account.iconKey} size={20} />
+            <TerritoryGlyph iconKey={account.iconKey} size={18} />
           </div>
-          <div className="min-w-0">
-            <div className="flex flex-wrap items-center gap-2">
-              <div className="truncate text-base font-semibold text-sf-foreground">{account.name}</div>
-              <span
-                className="shrink-0 rounded-full border px-2 py-0.5 text-[11px] font-semibold"
-                style={{ borderColor: `${account.color}44`, backgroundColor: `${account.color}12`, color: account.color }}
-              >
-                {TIER_LABEL[account.tier]}
-              </span>
-            </div>
-            <div className="truncate text-xs text-sf-foreground-muted">{account.industry}</div>
-            <div className="truncate text-xs text-sf-foreground-muted">{breadcrumb}</div>
+          <div className="min-w-0 text-xs text-sf-foreground-muted">
+            <span className="font-medium text-sf-foreground">{"Plays & library"}</span>
+            <span className="mx-1.5 text-slate-300">·</span>
+            <span className="truncate">{breadcrumb}</span>
           </div>
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
           <div className="h-2 w-2 rounded-full" style={{ backgroundColor: account.color }} />
-          <div className="text-xs text-sf-foreground-muted">Workspace locked to this account</div>
+          <div className="text-xs text-sf-foreground-muted">This workspace follows the account above</div>
         </div>
       </div>
 

@@ -8,6 +8,7 @@ import type { MotionKey, Persona, TabKey } from "@/types";
 import { ProductMark } from "@/components/ProductMark";
 import { Sidebar } from "@/components/Sidebar";
 import { AccountHeader } from "@/components/AccountHeader";
+import { AccountOverview } from "@/components/AccountOverview";
 import { TerritoryPanel } from "@/components/TerritoryPanel";
 import { PersonaGrid } from "@/components/PersonaGrid";
 import { UseCaseSelector } from "@/components/UseCaseSelector";
@@ -197,6 +198,10 @@ function AppInner() {
             </div>
           ) : (
             <>
+              <div className="px-6 pt-6">
+                <AccountOverview account={account} />
+              </div>
+
               <AccountHeader
                 account={account}
                 activeTab={activeTab}

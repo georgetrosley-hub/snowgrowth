@@ -46,7 +46,10 @@ export interface AccountConfig extends TerritoryPlaybook {
   id: string;
   name: string;
   tier: AccountTier;
+  /** Industry label shown with the account (e.g. “Pharma / Life Sciences”). */
   industry: string;
+  /** One-line context under industry (executive briefing). */
+  briefDescriptor: string;
   why_now: string;
   whats_broken: string;
   hypothesis: string;
