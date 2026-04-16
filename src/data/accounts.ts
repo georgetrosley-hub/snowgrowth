@@ -1,70 +1,20 @@
-import type {
-  AccountConfig,
-  AccountTier,
-  DealIntelligence,
-  DealPath,
-  PipelineSnapshot,
-  PlaybookKey
-} from "@/types";
-import { INDUSTRY_PLAYBOOKS } from "@/data/territoryPlaybooks";
+import type { AccountConfig } from "@/types";
+import { buildAccount } from "@/data/accountPersonaFactory";
 import {
-  clonePlaybookPersonas,
-  resolveUseCases,
-  type AccountUseCaseInput
-} from "@/data/accountPersonaFactory";
-
-function assembleAccount(
-  playbook: PlaybookKey,
-  spec: {
-    id: string;
-    name: string;
-    tier: AccountTier;
-    industry: string;
-    briefDescriptor: string;
-    why_now: string;
-    whats_broken: string;
-    hypothesis: string;
-    first_workload: string;
-    proof_point: string;
-    economic_impact: string;
-    deal_path: DealPath;
-    dealIntelligence: DealIntelligence;
-    pipelineSnapshot: PipelineSnapshot;
-    whySnowflakeWins: readonly [string, string, string];
-    personaIndices: number[];
-    useCases: AccountUseCaseInput[];
-    execTriggers?: string[];
-  }
-): AccountConfig {
-  const lib = INDUSTRY_PLAYBOOKS[playbook];
-  const personas = clonePlaybookPersonas(spec.id, spec.name, playbook, spec.personaIndices);
-  const useCases = resolveUseCases(spec.id, spec.useCases);
-  return {
-    color: lib.color,
-    iconKey: lib.iconKey,
-    id: spec.id,
-    name: spec.name,
-    tier: spec.tier,
-    industry: spec.industry,
-    briefDescriptor: spec.briefDescriptor,
-    why_now: spec.why_now,
-    whats_broken: spec.whats_broken,
-    hypothesis: spec.hypothesis,
-    first_workload: spec.first_workload,
-    proof_point: spec.proof_point,
-    economic_impact: spec.economic_impact,
-    deal_path: spec.deal_path,
-    dealIntelligence: spec.dealIntelligence,
-    pipelineSnapshot: spec.pipelineSnapshot,
-    whySnowflakeWins: spec.whySnowflakeWins,
-    personas,
-    useCases,
-    execTriggers: spec.execTriggers ?? lib.execTriggers
-  };
-}
+  billtrustMotion,
+  chaliceMotion,
+  cienaMotion,
+  everstageMotion,
+  healthUnionMotion,
+  lyricMotion,
+  sagentMotion,
+  sprinklrMotion,
+  theBancorpMotion,
+  usFinancialTechnologyMotion
+} from "@/data/territoryPersonas";
 
 export const ACCOUNTS: AccountConfig[] = [
-  assembleAccount("healthcare", {
+  buildAccount("healthcare", {
     id: "acc-health-union",
     name: "Health Union",
     tier: 1,
@@ -129,45 +79,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Native sharing and Marketplace reduce copy/paste between ‘clinical’ and ‘media’ teams when regulators ask who saw what.",
       "Streamlit and Cortex land on governed identity — not a separate visualization tool that drifts from the warehouse."
     ],
-    personaIndices: [0, 1, 2, 3],
-    useCases: [
-      {
-        id: "hu-wedge-unified-audience",
-        title: "Unified audience: patient + HCP overlap for one therapeutic area",
-        summary:
-          "Post-Adfire, prove one attributed cohort that both GTM and medical affairs trust for the same launch narrative.",
-        first_workload:
-          "Identity graph + consent flags in Snowflake; Streamlit slice for eligible HCPs tied to engaged patients.",
-        demoPersonaTemplateId: "hc-cao"
-      },
-      {
-        id: "hu-wedge-sponsor-lineage",
-        title: "Sponsor defense: lineage from raw engagement to reported reach",
-        summary:
-          "When a sponsor audits reach, the answer must be one query — not four exports.",
-        first_workload:
-          "Horizon lineage + Cortex Analyst question on campaign reach with full path.",
-        demoPersonaTemplateId: "hc-cio-ciso"
-      },
-      {
-        id: "hu-wedge-hcp-app",
-        title: "HCP targeting without BI tickets between brand and analytics",
-        summary:
-          "Commercial needs same-day lists when creative or formulary shifts — not weekly batches.",
-        first_workload:
-          "Streamlit HCP filter on governed Snowflake tables with Marketplace enrichment.",
-        demoPersonaTemplateId: "hc-head-pop-health"
-      },
-      {
-        id: "hu-wedge-fhir-bridge",
-        title: "Clinical informatics: governed Epic/FHIR access for trial and quality cohorts",
-        summary:
-          "Analysts still ticket IT for cohorts; unify Bulk FHIR landing with media-side identity.",
-        first_workload:
-          "Bulk FHIR pipeline + analyst app for one quality measure cohort.",
-        demoPersonaTemplateId: "hc-dir-clinical-informatics"
-      }
-    ],
+    ...healthUnionMotion("acc-health-union", "Health Union"),
     execTriggers: [
       "Adfire integration milestone or executive town hall on unified data",
       "CMS / FDA communication on DTC or HCP promotion",
@@ -176,7 +88,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("financial", {
+  buildAccount("financial", {
     id: "acc-everstage",
     name: "Everstage",
     tier: 1,
@@ -240,45 +152,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Dynamic Tables and tasks keep attainment current through month-end without another ETL product.",
       "Cortex and Streamlit turn the same semantic layer into exec answers — not a separate BI stack that diverges."
     ],
-    personaIndices: [0, 1, 2, 3, 4],
-    useCases: [
-      {
-        id: "ev-wedge-qbr-truth",
-        title: "QBR truth: one drill from region to payout",
-        summary:
-          "Stop the quarterly argument — prove one path Sales and Finance sign.",
-        first_workload:
-          "Semantic views joining CRM stages, CPQ quotes, and commission results in Snowflake.",
-        demoPersonaTemplateId: "fs-head-client-analytics"
-      },
-      {
-        id: "ev-wedge-data-eng",
-        title: "Pipeline freshness: Dynamic Tables from CRM and commission engine",
-        summary:
-          "Attainment that lags 24 hours loses trust — show always-current numbers.",
-        first_workload:
-          "Dynamic Tables + task graph for daily attainment vs. payout accrual.",
-        demoPersonaTemplateId: "fs-vp-data-engineering"
-      },
-      {
-        id: "ev-wedge-cro-forecast",
-        title: "Risk-adjusted forecast: CRO asks one question before the board",
-        summary:
-          "Cortex Analyst on aggregated pipeline + commission exposure for downside cases.",
-        first_workload:
-          "Cortex Analyst on Snowflake marts — ‘top deals at risk of slip this quarter.’",
-        demoPersonaTemplateId: "fs-cro"
-      },
-      {
-        id: "ev-wedge-cco-policy",
-        title: "Policy compliance: trace plan rules to paid outcomes",
-        summary:
-          "When plans change mid-quarter, prove who was paid under which rule version.",
-        first_workload:
-          "Versioned plan tables + lineage to payout with Horizon.",
-        demoPersonaTemplateId: "fs-cco"
-      }
-    ],
+    ...everstageMotion("acc-everstage", "Everstage"),
     execTriggers: [
       "Everstage product launch affecting commissions or planning modules",
       "Customer logo win in enterprise RevOps press",
@@ -287,7 +161,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("healthcare", {
+  buildAccount("healthcare", {
     id: "acc-chalice-ai",
     name: "Chalice AI",
     tier: 2,
@@ -351,45 +225,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Snowpark keeps training and inference where PHI already landed — no export to external GPU farms for core paths.",
       "Horizon and masking policies scale with each new tenant instead of reinventing compliance per stack."
     ],
-    personaIndices: [2, 0, 4, 1],
-    useCases: [
-      {
-        id: "ch-wedge-fhir-template",
-        title: "Client onboarding: Bulk FHIR + feature store template",
-        summary:
-          "Cut weeks off first model in production by standardizing ingestion and features.",
-        first_workload:
-          "Snowflake tenant + Bulk FHIR + Snowpark features for one pilot hospital system.",
-        demoPersonaTemplateId: "hc-dir-clinical-informatics"
-      },
-      {
-        id: "ch-wedge-cao-outcomes",
-        title: "Prove outcomes: CAO-facing cohort app on governed data",
-        summary:
-          "Buyers need to see population outcomes, not notebooks — Streamlit on Snowflake.",
-        first_workload:
-          "Cortex + Streamlit for one clinical outcome metric tied to model predictions.",
-        demoPersonaTemplateId: "hc-cao"
-      },
-      {
-        id: "ch-wedge-phi-governance",
-        title: "Tenant expansion: PHI masking and audit for each new client",
-        summary:
-          "Legal blocks reuse when masking isn’t policy-driven — Dynamic Masking + Horizon.",
-        first_workload:
-          "Role-based masking demo on shared schema pattern for multi-tenant.",
-        demoPersonaTemplateId: "hc-cio-ciso"
-      },
-      {
-        id: "ch-wedge-denials",
-        title: "Payer-connected: denial and revenue-cycle signal for model features",
-        summary:
-          "Claims features without building a separate claims stack per client.",
-        first_workload:
-          "Snowpark ML on claims extracts co-located with clinical features.",
-        demoPersonaTemplateId: "hc-vp-revenue-cycle"
-      }
-    ],
+    ...chaliceMotion("acc-chalice-ai", "Chalice AI"),
     execTriggers: [
       "Chalice AI Series B or staffing announcement",
       "Large health system logo with public case study",
@@ -398,7 +234,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("manufacturing", {
+  buildAccount("manufacturing", {
     id: "acc-ciena",
     name: "Ciena",
     tier: 2,
@@ -462,45 +298,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "One place for AI features and financial actuals — Snowpark models consume the same grain Finance trusts.",
       "Cortex closes the gap between the plant floor and the exec question — not a separate BI layer that lags."
     ],
-    personaIndices: [0, 3, 4, 1],
-    useCases: [
-      {
-        id: "ci-wedge-ot-dashboard",
-        title: "Historian to margin: OT + ERP in one executive layer",
-        summary:
-          "Backlog and downtime visible next to margin — where AI should focus first.",
-        first_workload:
-          "Dynamic Tables from historian + ERP into Snowflake; Streamlit exec dashboard.",
-        demoPersonaTemplateId: "mfg-vp-ops-technology"
-      },
-      {
-        id: "ci-wedge-fpa-variance",
-        title: "FP&A: plant variance in plain English after close",
-        summary:
-          "When margin moves, leadership asks why — answer in seconds, not three days.",
-        first_workload:
-          "Cortex Analyst on plant cost and revenue marts.",
-        demoPersonaTemplateId: "mfg-vp-fpa"
-      },
-      {
-        id: "ci-wedge-digital-twin",
-        title: "Digital manufacturing: current-state twin data for AI prioritization",
-        summary:
-          "AI backlog tied to line state — Dynamic Tables feeding digital twin metrics.",
-        first_workload:
-          "Sensor + process parameters to Snowflake for one line with what-if in Streamlit.",
-        demoPersonaTemplateId: "mfg-dir-digital-manufacturing"
-      },
-      {
-        id: "ci-wedge-supplier",
-        title: "Supply risk: tier-1 concentration with external signals",
-        summary:
-          "When suppliers slip, backlog and margin move together — join Marketplace risk to internal master.",
-        first_workload:
-          "Cortex Analyst on supplier master + Marketplace feeds.",
-        demoPersonaTemplateId: "mfg-csco"
-      }
-    ],
+    ...cienaMotion("acc-ciena", "Ciena"),
     execTriggers: [
       "Ciena earnings call citing margin or supply chain pressure",
       "Large carrier or cloud network build announcement",
@@ -509,7 +307,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("financial", {
+  buildAccount("financial", {
     id: "acc-sagent",
     name: "Sagent",
     tier: 2,
@@ -573,45 +371,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Snowflake Marketplace can enrich with macro and credit data without copying sensitive files out.",
       "Same warehouse for product analytics and customer-facing proof — one pipeline story."
     ],
-    personaIndices: [3, 4, 0, 2],
-    useCases: [
-      {
-        id: "sa-wedge-renewal-scorecard",
-        title: "Renewal scorecard: implementation + loan KPIs in one place",
-        summary:
-          "CS leads QBR with Snowflake-backed before/after — not slides from five systems.",
-        first_workload:
-          "Implementation milestones + loan performance marts per tenant.",
-        demoPersonaTemplateId: "fs-head-client-analytics"
-      },
-      {
-        id: "sa-wedge-data-eng",
-        title: "Telemetry pipeline: Dynamic Tables from product and support systems",
-        summary:
-          "Deployment health when events stream reliably into Snowflake.",
-        first_workload:
-          "Event streams + tasks into tenant marts for health scoring.",
-        demoPersonaTemplateId: "fs-vp-data-engineering"
-      },
-      {
-        id: "sa-wedge-cro-risk",
-        title: "Portfolio risk: CRO view of at-risk servicer deployments",
-        summary:
-          "Which customers are red before renewal — Cortex on aggregated signals.",
-        first_workload:
-          "Cortex Analyst on cross-tenant aggregates (aggregated only).",
-        demoPersonaTemplateId: "fs-cro"
-      },
-      {
-        id: "sa-wedge-cco-audit",
-        title: "Compliance: audit trail for servicing rule changes",
-        summary:
-          "Regulators and buyers ask what changed — Horizon lineage from rule to outcome.",
-        first_workload:
-          "Governed audit tables + lineage for policy versions.",
-        demoPersonaTemplateId: "fs-cco"
-      }
-    ],
+    ...sagentMotion("acc-sagent", "Sagent"),
     execTriggers: [
       "Dara rollout milestone or servicer press release",
       "CFPB or servicing enforcement headline",
@@ -620,7 +380,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("financial", {
+  buildAccount("financial", {
     id: "acc-us-financial-technology",
     name: "U.S. Financial Technology",
     tier: "2B",
@@ -684,45 +444,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Snowpark keeps scoring next to positions — no export of sensitive balances to external ML.",
       "Horizon + Cortex for defensible answers under exam pressure — same objects risk and client reporting use."
     ],
-    personaIndices: [0, 1, 2, 3],
-    useCases: [
-      {
-        id: "usft-wedge-anomaly",
-        title: "Intraday anomaly: concentration and settlement stress",
-        summary:
-          "Score positions continuously against policy — catch what batch missed.",
-        first_workload:
-          "Snowpark classification on streaming position snapshots in Snowflake.",
-        demoPersonaTemplateId: "fs-cro"
-      },
-      {
-        id: "usft-wedge-quant",
-        title: "Quant path: factor risk without leaving Snowflake",
-        summary:
-          "Research and risk use the same intraday book — Snowpark for scenarios.",
-        first_workload:
-          "Snowpark notebooks on aggregated risk factors with governance.",
-        demoPersonaTemplateId: "fs-head-quant-research"
-      },
-      {
-        id: "usft-wedge-cortex",
-        title: "Exam prep: CRO question with lineage in one session",
-        summary:
-          "When regulators ask, the answer is live — Cortex Analyst on risk marts.",
-        first_workload:
-          "Cortex Analyst on aggregated exposure tables with Horizon lineage.",
-        demoPersonaTemplateId: "fs-cro"
-      },
-      {
-        id: "usft-wedge-data-eng",
-        title: "Pipeline: custody and cash feeds into Dynamic Tables",
-        summary:
-          "Foundation for anomalies — always-current book of record.",
-        first_workload:
-          "Dynamic Tables + tasks from core banking and custody feeds.",
-        demoPersonaTemplateId: "fs-vp-data-engineering"
-      }
-    ],
+    ...usFinancialTechnologyMotion("acc-us-financial-technology", "U.S. Financial Technology"),
     execTriggers: [
       "Fed or OCC stress testing commentary",
       "Institutional client RFP for reporting latency or transparency",
@@ -731,7 +453,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("financial", {
+  buildAccount("financial", {
     id: "acc-billtrust",
     name: "Billtrust",
     tier: "2B",
@@ -795,45 +517,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Snowpark for prediction on payment behavior without exporting remittance data externally.",
       "Secure Data Sharing for buyer–seller joint analytics when contracts allow."
     ],
-    personaIndices: [3, 4, 2, 0],
-    useCases: [
-      {
-        id: "bt-wedge-dso",
-        title: "DSO intelligence: live AR aging + payer behavior",
-        summary:
-          "Treasury sees risk before close — not Monday’s report.",
-        first_workload:
-          "AR events + cash application in Snowflake with daily Dynamic Tables refresh.",
-        demoPersonaTemplateId: "fs-vp-data-engineering"
-      },
-      {
-        id: "bt-wedge-client-analytics",
-        title: "Customer analytics: which merchants bleed cash application time",
-        summary:
-          "Customer Success uses Snowflake-backed health scores.",
-        first_workload:
-          "Streamlit health dashboard on tenant metrics.",
-        demoPersonaTemplateId: "fs-head-client-analytics"
-      },
-      {
-        id: "bt-wedge-cco-controls",
-        title: "Controls: lineage from invoice to cash for audits",
-        summary:
-          "SOC and customer audits ask for proof — Horizon on AR path.",
-        first_workload:
-          "Lineage from ingestion to reported AR position.",
-        demoPersonaTemplateId: "fs-cco"
-      },
-      {
-        id: "bt-wedge-cro-concentration",
-        title: "Concentration: payer and credit risk in one view",
-        summary:
-          "Which customers concentrate failure risk — Cortex on enriched marts.",
-        first_workload:
-          "Cortex Analyst on payer concentration questions.",
-        demoPersonaTemplateId: "fs-cro"
-      }
-    ],
+    ...billtrustMotion("acc-billtrust", "Billtrust"),
     execTriggers: [
       "Interest rate or liquidity stress affecting B2B payment timing",
       "Billtrust product launch in AR intelligence or payments",
@@ -842,7 +526,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("financial", {
+  buildAccount("financial", {
     id: "acc-the-bancorp",
     name: "The Bancorp",
     tier: "2B",
@@ -906,45 +590,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Snowflake as system of insight without moving raw partner data to external tools.",
       "Horizon for BSA/AML lineage when auditors trace alerts to source."
     ],
-    personaIndices: [2, 3, 0, 4],
-    useCases: [
-      {
-        id: "tb-wedge-aml-features",
-        title: "BSA/AML: unified features across partner programs",
-        summary:
-          "Models see the same truth compliance reviews — Snowpark on unified marts.",
-        first_workload:
-          "Transaction + party graph in Snowflake; Snowpark risk scoring.",
-        demoPersonaTemplateId: "fs-cco"
-      },
-      {
-        id: "tb-wedge-data-platform",
-        title: "Partner hub: governed ingestion for every new program",
-        summary:
-          "Reduce onboarding time with templated Snowflake schemas and tasks.",
-        first_workload:
-          "Dynamic Tables per program feed into shared dimensions.",
-        demoPersonaTemplateId: "fs-vp-data-engineering"
-      },
-      {
-        id: "tb-wedge-cro-program",
-        title: "Program risk: CRO view of concentration by partner",
-        summary:
-          "Which embedded programs drive tail risk — Cortex on aggregated marts.",
-        first_workload:
-          "Cortex Analyst for concentration and limit questions.",
-        demoPersonaTemplateId: "fs-cro"
-      },
-      {
-        id: "tb-wedge-client-insights",
-        title: "Partner success: analytics on program health for fintech partners",
-        summary:
-          "Revenue and risk together for relationship managers.",
-        first_workload:
-          "Streamlit program scorecard on Snowflake.",
-        demoPersonaTemplateId: "fs-head-client-analytics"
-      }
-    ],
+    ...theBancorpMotion("acc-the-bancorp", "The Bancorp"),
     execTriggers: [
       "FDIC or partner bank enforcement in embedded finance",
       "New fintech partner program launch (public)",
@@ -953,7 +599,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("financial", {
+  buildAccount("financial", {
     id: "acc-sprinklr",
     name: "Sprinklr",
     tier: 3,
@@ -1017,45 +663,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Cortex for ‘why is this account red’ without another BI team in the middle.",
       "Snowpark for churn and expansion models on the same grain CS uses."
     ],
-    personaIndices: [4, 3, 2, 1],
-    useCases: [
-      {
-        id: "sp-wedge-360",
-        title: "Enterprise 360: channels + usage + revenue in Snowflake",
-        summary:
-          "One health score CS and sales trust — Streamlit + Cortex.",
-        first_workload:
-          "Consolidated events + CRM tie-in with Dynamic Tables.",
-        demoPersonaTemplateId: "fs-head-client-analytics"
-      },
-      {
-        id: "sp-wedge-data-eng",
-        title: "Telemetry: product usage streams into Snowflake",
-        summary:
-          "Feature adoption for roadmap — real-time, not monthly export.",
-        first_workload:
-          "Event pipeline + tasks into feature usage marts.",
-        demoPersonaTemplateId: "fs-vp-data-engineering"
-      },
-      {
-        id: "sp-wedge-cco",
-        title: "Trust & safety: lineage for moderation and policy reporting",
-        summary:
-          "When buyers ask how decisions are made — Horizon on content policy data.",
-        first_workload:
-          "Governed tables for moderation outcomes + lineage.",
-        demoPersonaTemplateId: "fs-cco"
-      },
-      {
-        id: "sp-wedge-cro-churn",
-        title: "Churn: Snowpark on signals CS already has",
-        summary:
-          "Prioritize saves with model transparency — same data as dashboards.",
-        first_workload:
-          "Snowpark classification on health features.",
-        demoPersonaTemplateId: "fs-cro"
-      }
-    ],
+    ...sprinklrMotion("acc-sprinklr", "Sprinklr"),
     execTriggers: [
       "Sprinklr earnings or restructuring headline",
       "Major enterprise CX platform consolidation in news",
@@ -1064,7 +672,7 @@ export const ACCOUNTS: AccountConfig[] = [
     ]
   }),
 
-  assembleAccount("healthcare", {
+  buildAccount("healthcare", {
     id: "acc-lyric",
     name: "Lyric",
     tier: 3,
@@ -1128,45 +736,7 @@ export const ACCOUNTS: AccountConfig[] = [
       "Dynamic Tables keep post-pay adjustments current for model retraining.",
       "Cortex for business questions on complex journeys without SQL for every stakeholder."
     ],
-    personaIndices: [1, 0, 3, 2],
-    useCases: [
-      {
-        id: "ly-wedge-loop",
-        title: "Closed loop: pre-auth to payment outcome in one graph",
-        summary:
-          "See where policy leaks money — unified journey in Snowflake.",
-        first_workload:
-          "Claims + auth tables linked with Snowpark leakage analysis.",
-        demoPersonaTemplateId: "hc-vp-revenue-cycle"
-      },
-      {
-        id: "ly-wedge-denial-ml",
-        title: "Denial prediction before submit — same data as post-pay",
-        summary:
-          "Train on outcomes that include post-pay — not siloed pre-pay only.",
-        first_workload:
-          "Snowpark ML on unified features from journey model.",
-        demoPersonaTemplateId: "hc-vp-revenue-cycle"
-      },
-      {
-        id: "ly-wedge-cao",
-        title: "Population view: utilization tied to payment policy",
-        summary:
-          "CAO asks which members are harmed by policy friction.",
-        first_workload:
-          "Cortex Analyst on attributed member + claims journey.",
-        demoPersonaTemplateId: "hc-cao"
-      },
-      {
-        id: "ly-wedge-pop",
-        title: "Care gap: when payment delay drives medical risk",
-        summary:
-          "Pop health sees financial and clinical together — Streamlit cohorts.",
-        first_workload:
-          "Risk stratification + payment delay flags in Snowflake.",
-        demoPersonaTemplateId: "hc-head-pop-health"
-      }
-    ],
+    ...lyricMotion("acc-lyric", "Lyric"),
     execTriggers: [
       "CMS or state policy change on prior authorization",
       "Lyric customer or payer partnership announcement",

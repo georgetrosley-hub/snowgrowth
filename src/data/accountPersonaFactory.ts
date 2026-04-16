@@ -1,38 +1,40 @@
-import type { AccountUseCase, Persona, PlaybookKey } from "@/types";
+import type { AccountConfig, Persona, PlaybookKey } from "@/types";
 import { INDUSTRY_PLAYBOOKS } from "@/data/territoryPlaybooks";
 
-/** Clone industry-library personas for one account with stable IDs: `${accountId}__${templateId}`. */
-export function clonePlaybookPersonas(
+/** Build a stable persona id and substitute [Account] in loom scripts. */
+export function persona(
   accountId: string,
   accountName: string,
-  playbook: PlaybookKey,
-  indices: number[]
-): Persona[] {
-  const src = INDUSTRY_PLAYBOOKS[playbook].personas;
-  return indices.map((idx) => {
-    const p = src[idx];
-    if (!p) throw new Error(`Invalid persona index ${idx} for playbook ${playbook}`);
-    const id = `${accountId}__${p.id}`;
-    return {
-      ...p,
-      id,
-      trigger: `${p.trigger} — ${accountName}`,
-      loomScript: p.loomScript.replace(/\[Account\]/g, accountName)
-    };
-  });
+  slug: string,
+  fields: Omit<Persona, "id">
+): Persona {
+  return {
+    id: `${accountId}__${slug}`,
+    ...fields,
+    loomScript: fields.loomScript.replaceAll("[Account]", accountName)
+  };
 }
 
-export type AccountUseCaseInput = Omit<AccountUseCase, "demoPersonaId"> & {
-  /** Original id in `INDUSTRY_PLAYBOOKS[playbook].personas` (e.g. pharma-vp-data-science). */
-  demoPersonaTemplateId: string;
-};
-
-export function resolveUseCases(accountId: string, items: AccountUseCaseInput[]): AccountUseCase[] {
-  return items.map((uc) => {
-    const { demoPersonaTemplateId, ...rest } = uc;
-    return {
-      ...rest,
-      demoPersonaId: `${accountId}__${demoPersonaTemplateId}`
-    };
-  });
+/** Assemble account config from playbook styling + account-defined personas and wedges. */
+export function buildAccount(
+  playbook: PlaybookKey,
+  spec: Omit<AccountConfig, "color" | "iconKey"> & {
+    execTriggers?: string[];
+  }
+): AccountConfig {
+  const lib = INDUSTRY_PLAYBOOKS[playbook];
+  const ids = new Set(spec.personas.map((p) => p.id));
+  for (const uc of spec.useCases) {
+    if (!ids.has(uc.demoPersonaId)) {
+      throw new Error(
+        `Use case "${uc.id}" references demoPersonaId "${uc.demoPersonaId}" — not found in this account's personas`
+      );
+    }
+  }
+  return {
+    color: lib.color,
+    iconKey: lib.iconKey,
+    ...spec,
+    execTriggers: spec.execTriggers ?? []
+  };
 }
