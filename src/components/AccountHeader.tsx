@@ -3,10 +3,11 @@
 import type { AccountConfig, TabKey } from "@/types";
 import { TerritoryGlyph } from "@/components/icons/TerritoryGlyph";
 
-const TABS: TabKey[] = ["territory", "personas", "usecases", "demo", "outreach", "exec-triggers"];
+const TABS: TabKey[] = ["territory", "deal-view", "personas", "usecases", "demo", "outreach", "exec-triggers"];
 
 const TAB_LABELS: Record<TabKey, string> = {
   territory: "Territory",
+  "deal-view": "Deal View",
   personas: "Personas",
   usecases: "Use Cases",
   demo: "Demo Recipe",
@@ -49,7 +50,7 @@ export function AccountHeader({
         </div>
       </div>
 
-      <div className="flex items-end gap-1 border-t border-sf-border/80 bg-sf-surface-muted/50 px-4">
+      <div className="flex items-end gap-1 overflow-x-auto border-t border-sf-border/80 bg-sf-surface-muted/50 px-4 pb-px [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {TABS.map((tab) => {
           const selected = activeTab === tab;
           return (
@@ -58,7 +59,7 @@ export function AccountHeader({
               type="button"
               onClick={() => onTabChange(tab)}
               className={[
-                "relative rounded-t-lg px-4 py-2.5 text-sm font-medium transition",
+                "relative shrink-0 rounded-t-lg px-4 py-2.5 text-sm font-medium transition",
                 selected ? "bg-white text-sf-foreground" : "text-sf-foreground-muted hover:bg-white/60 hover:text-sf-foreground"
               ].join(" ")}
             >

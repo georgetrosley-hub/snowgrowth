@@ -55,6 +55,22 @@ export interface DealPath {
   expansionFlow: string[];
 }
 
+/** How the deal lands, who decides, and how it expands after the first win. */
+export interface DealIntelligence {
+  /** First persona / role to engage (wedge owner). */
+  entryPoint: string;
+  /** Ordered stages after the initial technical win. */
+  expansionPath: string[];
+  economicBuyer: string;
+  technicalBuyer: string;
+  /** What could stall signature or expansion. */
+  keyRisk: string;
+  /** Incumbent tools, internal builds, or “do nothing.” */
+  competitorStatusQuo: string;
+  landStrategy: string;
+  expandStrategy: string;
+}
+
 /** Named enterprise account: its own personas, use cases, and exec triggers. */
 export interface AccountConfig {
   id: string;
@@ -73,6 +89,7 @@ export interface AccountConfig {
   proof_point: string;
   economic_impact: string;
   deal_path: DealPath;
+  dealIntelligence: DealIntelligence;
   personas: Persona[];
   useCases: AccountUseCase[];
   execTriggers: string[];
@@ -86,6 +103,7 @@ export type MotionKey =
 
 export type TabKey =
   | "territory"
+  | "deal-view"
   | "personas"
   | "usecases"
   | "demo"

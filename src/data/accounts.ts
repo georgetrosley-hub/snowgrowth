@@ -1,4 +1,4 @@
-import type { AccountConfig, AccountTier, DealPath, PlaybookKey } from "@/types";
+import type { AccountConfig, AccountTier, DealIntelligence, DealPath, PlaybookKey } from "@/types";
 import { INDUSTRY_PLAYBOOKS } from "@/data/territoryPlaybooks";
 import {
   clonePlaybookPersonas,
@@ -21,6 +21,7 @@ function assembleAccount(
     proof_point: string;
     economic_impact: string;
     deal_path: DealPath;
+    dealIntelligence: DealIntelligence;
     personaIndices: number[];
     useCases: AccountUseCaseInput[];
     execTriggers?: string[];
@@ -44,6 +45,7 @@ function assembleAccount(
     proof_point: spec.proof_point,
     economic_impact: spec.economic_impact,
     deal_path: spec.deal_path,
+    dealIntelligence: spec.dealIntelligence,
     personas,
     useCases,
     execTriggers: spec.execTriggers ?? lib.execTriggers
@@ -83,6 +85,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "Expand Streamlit apps to commercial ops",
         "Multi-year expansion aligned to launches"
       ]
+    },
+    dealIntelligence: {
+      entryPoint: "VP Data Science (R&D) — land on Snowpark ML cohort scoring vs overnight SAS before readout season peaks.",
+      expansionPath: [
+        "Prove governed cohort + timing win in R&D with a named trial metric.",
+        "Pull CDO + regulatory into Horizon / Cortex lineage for FDA posture.",
+        "Expand Streamlit apps into commercial with Marketplace joins.",
+        "Tie renewal to launch calendar and pipeline milestones."
+      ],
+      economicBuyer: "Chief Data Officer (platform + governance ROI) with CFO on trial-cycle velocity and commercial launch efficiency.",
+      technicalBuyer: "VP Data Science (R&D) owns the Snowpark model; Head of Commercial Analytics validates downstream apps.",
+      keyRisk:
+        "R&D treats SAS as ‘real’ modeling; if the first win doesn’t hit a readout decision timeline, the wedge stalls before commercial pulls budget.",
+      competitorStatusQuo:
+        "SAS batch jobs + spreadsheet exports for R&D; legacy BI for commercial; ‘good enough’ warehouse for IT-led pipelines.",
+      landStrategy:
+        "Anchor a single trial cohort score in Snowflake with a wall-clock comparison to the SAS job, then lock a 30-day success path with R&D leadership.",
+      expandStrategy:
+        "Sequence governance and Cortex to the regulatory narrative, then fund Streamlit commercial plays off the same governed data products."
     },
     personaIndices: [0, 1, 2, 3, 4],
     useCases: [
@@ -168,6 +189,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "Enterprise standard for new analytics workloads"
       ]
     },
+    dealIntelligence: {
+      entryPoint: "Chief Risk Officer — start with governed risk Q&A + lineage in a Basel / exam prep window.",
+      expansionPath: [
+        "Prove one regulatory question answered in-session with full lineage.",
+        "Snowpark quant path on tick data without export.",
+        "AML narrative at ops scale for FinCEN timelines.",
+        "Standardize new analytics workloads on Snowflake."
+      ],
+      economicBuyer: "CRO + CFO (capital / op risk) with CCO on compliance and audit defensibility.",
+      technicalBuyer: "VP Data Engineering (platform) + Head of Quant Research (workloads) — security and model governance gates.",
+      keyRisk:
+        "Exam or initiative timing slips; without a single named regulatory deliverable, the deal stays a platform discussion.",
+      competitorStatusQuo:
+        "Spark/SAS for risk aggregates; separate BI and narrative tools; export to local Python for front office.",
+      landStrategy:
+        "Attach to Basel or exam prep with a 48-hour Cortex Analyst proof on aggregated exposure — one live question, one lineage trail.",
+      expandStrategy:
+        "Use the risk win to unlock Snowpark for quants, then push AML narrative and Dynamic Tables to retire parallel Spark chains."
+    },
     personaIndices: [0, 1, 2, 3, 4],
     useCases: [
       {
@@ -250,6 +290,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "FHIR pipeline for analyst self-service",
         "Enterprise agreement across regions"
       ]
+    },
+    dealIntelligence: {
+      entryPoint: "Chief Analytics Officer — population health plain-language query with governance for VBC.",
+      expansionPath: [
+        "Win on Cortex Analyst for care managers without BI tickets.",
+        "Add denial ML and Dynamic Tables feeds from Epic-adjacent data.",
+        "FHIR pipeline for analyst self-service.",
+        "Expand enterprise agreement across regions."
+      ],
+      economicBuyer: "CAO + VP Revenue Cycle (margin / denial dollars) with payer leadership on VBC incentives.",
+      technicalBuyer: "Director Clinical Informatics + CIO/CISO for Epic boundaries and PHI posture.",
+      keyRisk:
+        "Epic extract queues and IT change freezes; if the first win doesn’t hit a contract metric, expansion waits for the next budget cycle.",
+      competitorStatusQuo:
+        "Weekly batch reports + BI tickets; Epic as the only ‘trusted’ surface; spreadsheets for gap closure.",
+      landStrategy:
+        "Pick one attributed population and one plain-English question; deliver the intervention list in a live session with care managers.",
+      expandStrategy:
+        "Tie denial ML and daily refresh to revenue integrity, then sell FHIR landing as the unlock for analyst self-service."
     },
     personaIndices: [0, 1, 2, 3, 4],
     useCases: [
@@ -339,6 +398,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "Digital twin data foundation for enterprise rollout"
       ]
     },
+    dealIntelligence: {
+      entryPoint: "VP Operations Technology — OT historian streaming into Snowflake for line health before downtime.",
+      expansionPath: [
+        "Land OT streaming + real-time dashboard.",
+        "Supplier risk intel with Marketplace signals.",
+        "Quality traceability ML across plants.",
+        "Digital twin foundation for enterprise rollout."
+      ],
+      economicBuyer: "Chief Supply Chain Officer + plant FP&A (downtime and supplier disruption dollars).",
+      technicalBuyer: "VP Ops Technology + OT security — connectivity, segmentation, and MES/historian truth.",
+      keyRisk:
+        "OT security and change control slow connectivity; pilots stall if anomaly signal doesn’t tie to a maintenance action.",
+      competitorStatusQuo:
+        "Historians and MES per plant; Excel for FP&A close; point BI tools for operations.",
+      landStrategy:
+        "Anchor on one line or one plant with streaming historian → anomaly drill-down in one executive readout.",
+      expandStrategy:
+        "Layer supplier risk and quality ML as follow-on modules, then position the twin as the enterprise data foundation."
+    },
     personaIndices: [0, 1, 2, 3, 4],
     useCases: [
       {
@@ -421,6 +499,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "PHI masking + clean rooms for research use cases",
         "Corporate standard for new analytics products"
       ]
+    },
+    dealIntelligence: {
+      entryPoint: "Chief Analytics Officer — daily Stars/HEDIS intervention lists vs weekly batch scoring.",
+      expansionPath: [
+        "Daily scoring pilot on one MA market.",
+        "Expand to additional lines of business.",
+        "PHI masking + clean rooms for research use cases.",
+        "Corporate standard for new analytics products."
+      ],
+      economicBuyer: "VP Medicare Advantage + CAO — Stars bonus and quality dollars at stake.",
+      technicalBuyer: "Enterprise data office + population health leadership — pipeline SLAs and PHI policy.",
+      keyRisk:
+        "Internal platform fatigue; if daily refresh doesn’t change gap closure actions in-market, the pilot dies as a reporting exercise.",
+      competitorStatusQuo:
+        "Weekly batch risk scores + legacy BI; fragmented analytics between payer and clinical teams.",
+      landStrategy:
+        "Pick one region and one daily list tied to a named Stars measure; show before/after freshness in the same forum.",
+      expandStrategy:
+        "Roll geography by geography with LOB expansion, then sell governance + clean rooms as the enterprise cross-LOB story."
     },
     personaIndices: [0, 1, 2, 3, 4],
     useCases: [
@@ -505,6 +602,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "Expand on success"
       ]
     },
+    dealIntelligence: {
+      entryPoint: "Director RWE — clean room when vendor data-sharing blocks a study (or VP Data Science if trial stress hits).",
+      expansionPath: [
+        "Attach to a named RWE or trial trigger event.",
+        "Re-engage with a scoped demo tied to legal and procurement.",
+        "Pilot workload with success metrics.",
+        "Expand on proof; avoid broad platform pitches."
+      ],
+      economicBuyer: "Procurement + RWE leadership — vendor spend and study throughput.",
+      technicalBuyer: "IT alliance + data science — integration and governance acceptance.",
+      keyRisk:
+        "Opportunistic motion without a calendar trigger; deal stays in ‘monitor’ until a compelling event forces a named owner.",
+      competitorStatusQuo:
+        "SAS and vendor duplicative feeds; ‘wait for the next initiative’ as default.",
+      landStrategy:
+        "Lead with a clean room join that proves non-exposure to both sides — legal in the room, not a slide.",
+      expandStrategy:
+        "After the first proof, attach Snowpark cohort and commercial Streamlit to specific launch or enrollment pressure."
+    },
     personaIndices: [0, 3, 4],
     useCases: [
       {
@@ -565,6 +681,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "Scale to regions"
       ]
     },
+    dealIntelligence: {
+      entryPoint: "Head of Client Analytics — advisor next-best-action when a wealth transformation initiative is active.",
+      expansionPath: [
+        "Align to a named initiative owner with a single success metric.",
+        "Pilot Streamlit advisor workflow in a branch or region.",
+        "Scale Dynamic Tables to retire parallel Spark on risk aggregates.",
+        "Expand compliance narratives under exam pressure."
+      ],
+      economicBuyer: "Wealth platform owner + CFO — AUM lift and advisor productivity.",
+      technicalBuyer: "VP Data Engineering — pipeline and policy compliance for exports.",
+      keyRisk:
+        "Initiative timing; without a single named program, Wells expands initiative-by-initiative and the deal fragments.",
+      competitorStatusQuo:
+        "Spreadsheet prioritization for advisors; parallel Spark for aggregates; manual SAR narrative under pressure.",
+      landStrategy:
+        "Anchor a Streamlit slice of advisor book + propensity to one pilot with a 30-day usage metric.",
+      expandStrategy:
+        "Use the pilot to win Dynamic Tables for risk feeds, then attach AML/Cortex when exam pressure resurfaces."
+    },
     personaIndices: [4, 3, 2],
     useCases: [
       {
@@ -624,6 +759,25 @@ export const ACCOUNTS: AccountConfig[] = [
         "Pilot with narrow cohort",
         "Expand research footprint"
       ]
+    },
+    dealIntelligence: {
+      entryPoint: "CIO / CISO — PHI masking + clean room when IRB or research pushes on data boundaries.",
+      expansionPath: [
+        "Security-first briefing with IRB and research IT.",
+        "Pilot with a narrow cohort and audit trail.",
+        "Bulk FHIR for trial self-service.",
+        "Expand governed research footprint."
+      ],
+      economicBuyer: "Research leadership + finance — study throughput and compliance review cost.",
+      technicalBuyer: "CIO/CISO + clinical informatics — Epic boundaries and PHI policy.",
+      keyRisk:
+        "Governance cycles; if the first session doesn’t satisfy IRB and security jointly, the project stalls in review.",
+      competitorStatusQuo:
+        "Epic extracts and ticket queues; siloed research sandboxes without a shared PHI story.",
+      landStrategy:
+        "Deliver masked views + clean room aggregate in one walkthrough — IRB and security in the same room.",
+      expandStrategy:
+        "After trust, land FHIR + Streamlit for trial cohorts; then widen to population health queries with the same governance spine."
     },
     personaIndices: [4, 2, 3],
     useCases: [

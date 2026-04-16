@@ -15,6 +15,7 @@ import { UseCaseSelector } from "@/components/UseCaseSelector";
 import { DemoPanel } from "@/components/DemoPanel";
 import { OutreachPanel } from "@/components/OutreachPanel";
 import { ExecTriggersPanel } from "@/components/ExecTriggersPanel";
+import { DealViewPanel } from "@/components/DealViewPanel";
 import { ToastProvider, useToast } from "@/components/ToastProvider";
 
 const DEFAULT_MOTION: MotionKey = "Mix of all three";
@@ -22,6 +23,7 @@ const DEFAULT_TAB: TabKey = "territory";
 
 const VALID_TABS: TabKey[] = [
   "territory",
+  "deal-view",
   "personas",
   "usecases",
   "demo",
@@ -222,6 +224,8 @@ function AppInner() {
 
               <div className="px-6 py-6">
                 {activeTab === "territory" && <TerritoryPanel account={account} />}
+
+                {activeTab === "deal-view" && <DealViewPanel account={account} />}
 
                 {activeTab === "personas" && (
                   <PersonaGrid
