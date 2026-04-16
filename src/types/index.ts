@@ -1,8 +1,16 @@
 export interface DemoRecipe {
   title: string;
+  /** Business problem this demo makes tangible (not the tech stack). */
+  businessProblem: string;
+  /** Why it matters in dollars, risk, or cycle time. */
+  economicWhy: string;
   data: string;
   build: string;
   showMoment: string;
+  /** What you want the buyer to say or realize in the room. */
+  expectedReaction: string;
+  /** What this proof unlocks next in the deal (meeting, pilot, expansion). */
+  nextStepTrigger: string;
   seRole: string;
   aeRole: string;
 }

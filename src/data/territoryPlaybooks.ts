@@ -23,6 +23,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Snowpark ML pipeline that scores patient eligibility across 3 trial criteria. Show feature engineering in Python, model training, and inference -- all inside Snowflake, no data leaving.",
           showMoment:
             "Run a cohort filter live. Watch it score 50k synthetic patients in under 4 seconds. Say: 'Your SAS job does this overnight.'",
+          businessProblem:
+            "Trial and R&D leaders can’t iterate on cohorts fast enough — SAS batch jobs cap decision speed before readouts and enrollment fixes.",
+          economicWhy:
+            "Shorter analytics cycles → faster go/no-go on trials and less wasted enrollment spend; every week of SAS latency has a portfolio opportunity cost.",
+          expectedReaction:
+            "‘If this really runs in Snowflake in seconds, we need to stop treating SAS as the only modeling surface.’",
+          nextStepTrigger:
+            "Named pilot on one live trial cohort with a wall-clock comparison to the existing SAS job — owner + success date.",
           seRole: "Drives the demo -- Python notebook live in Snowflake",
           aeRole: "Frames the business context before demo, handles ROI and next steps after"
         },
@@ -46,6 +54,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Horizon Governance lineage graph showing data flow from ingestion to report. Layer Cortex Analyst on top -- exec types a plain English question ('Show me all records modified after submission date') and gets an answer with full lineage.",
           showMoment:
             "Type a compliance question in plain English. Get the answer and the audit trail in one shot. Say: 'Your compliance team can do this without opening a ticket to data engineering.'",
+          businessProblem:
+            "Audit and quality can’t defend lineage or answer regulator questions without engineering in the loop — review cycles drag and submissions stall.",
+          economicWhy:
+            "Fewer compliance fire drills, faster submission readiness, and lower legal/regulatory rework cost when questions are answered in one governed hop.",
+          expectedReaction:
+            "‘We could actually walk an inspector through this in a single session — not slide screenshots from five systems.’",
+          nextStepTrigger:
+            "Executive readout with compliance + data office: scope Horizon/Cortex for one submission or inspection thread.",
           seRole: "Sets up and operates the demo environment, handles technical Q&A",
           aeRole: "Records the Loom intro, drives the meeting, owns the regulatory framing"
         },
@@ -69,6 +85,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Streamlit app inside Snowflake that lets a commercial ops user filter HCPs by specialty, territory, engagement score, and script trend -- no SQL required. Show Marketplace data joining live.",
           showMoment:
             "Filter from 200k HCPs to a targeted call list in 10 seconds. Say: 'Your field team can run this themselves. No BI ticket, no data export.'",
+          businessProblem:
+            "Commercial can’t refresh targeting and segments at launch speed — BI exports and tickets cap HCP lists when the brand team needs daily iteration.",
+          economicWhy:
+            "More relevant calls per rep hour, less agency and BI spend, and faster capture of launch window revenue.",
+          expectedReaction:
+            "‘If reps can run this themselves, we stop losing a week every time we change the segment.’",
+          nextStepTrigger:
+            "Align with brand + ops on one launch wave: pilot geography, metric (calls or NRx), and 30-day readout.",
           seRole: "Builds and demos the Streamlit app live",
           aeRole: "Frames the field productivity angle, handles stakeholder mapping after"
         },
@@ -92,6 +116,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Streamlit dashboard aggregating batch status across all plants in real time. Filter by site, product, batch age. Flag batches approaching expiry or held for review.",
           showMoment:
             "Show all 4 plants in one view. Drill into a held batch. Say: 'Right now, how long does it take your QA team to get this view across all sites?'",
+          businessProblem:
+            "QA and ops lack one real-time view of batch status across plants — held batches and release risk surface too late.",
+          economicWhy:
+            "Less unplanned downtime and scrap; faster release decisions reduce inventory carry and compliance exposure.",
+          expectedReaction:
+            "‘This is the single pane we’ve been asking for in plant reviews — not another Monday spreadsheet.’",
+          nextStepTrigger:
+            "Operations sponsor: pick one product line + two plants for a 60-day streaming pilot with downtime KPI.",
           seRole: "Builds multi-site dashboard, handles data architecture questions",
           aeRole: "Leads with the operational pain, frames Snowflake Secure Data Sharing as the unlock"
         },
@@ -116,6 +148,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Snowflake Data Clean Room where two providers share data without either seeing the other's raw records. Run a join on synthetic patient IDs and surface matched outcomes. Show the query, show what neither party can see.",
           showMoment:
             "Run the clean room join. Show the output -- matched cohort, outcome rates. Then show what the other party cannot query. Say: 'No PHI leaves either environment. Your legal team signs off on this.'",
+          businessProblem:
+            "RWE studies stall when vendors won’t share raw data — legal blocks joins that would prove real-world outcomes.",
+          economicWhy:
+            "Studies close faster with less duplicate vendor spend; avoided delay on evidence that supports access and pricing.",
+          expectedReaction:
+            "‘Show legal this — if neither side sees raw partner data, we can finally move the study forward.’",
+          nextStepTrigger:
+            "Legal + procurement workshop: replicate on one real vendor pair with paper-ready non-exposure summary.",
           seRole: "Drives the clean room setup and live query demo",
           aeRole: "Handles vendor relationship framing and procurement path after the demo"
         },
@@ -152,6 +192,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Cortex Analyst on top of aggregated risk data. CRO types 'Show me top 10 counterparty exposures breaching Basel IV thresholds as of yesterday' and gets a table with lineage.",
           showMoment:
             "Type the question. Get the answer in under 3 seconds with source lineage. Say: 'Your risk team gets this in a morning report 4 hours late. This is live.'",
+          businessProblem:
+            "Risk and regulatory can’t get a defensible, sub-hour answer on exposure and lineage when Basel or exam pressure hits.",
+          economicWhy:
+            "Lower operational risk capital inefficiency and fewer parallel reporting stacks; faster exams reduce one-off project burn.",
+          expectedReaction:
+            "‘If this is live with lineage, we stop assembling five extracts every time the regulator asks a follow-up.’",
+          nextStepTrigger:
+            "CRO-sponsored workshop on one regulatory stress question with IT + model risk — path to PoC on production aggregates.",
           seRole: "Builds the Cortex Analyst layer, drives the technical demo",
           aeRole: "Records Loom intro, owns regulatory framing and executive conversation"
         },
@@ -175,6 +223,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Snowpark Python backtesting framework running inside Snowflake. No data export to local Python. Show parallel execution across instruments, results written back to a table, Cortex Analyst querying results.",
           showMoment:
             "Run a backtest on 50 instruments live. Show the parallel execution. Show query time vs. what a local Python environment would take. Say: 'No data leaves Snowflake. Your IT team loves you.'",
+          businessProblem:
+            "Quants can’t run backtests on full history without exports — policy blocks data movement and models stall.",
+          economicWhy:
+            "Faster strategy iteration and fewer failed trades from stale signals; reduced compliance risk from unapproved exports.",
+          expectedReaction:
+            "‘If tick data stays inside Snowflake, we can actually match production constraints in the backtest.’",
+          nextStepTrigger:
+            "Named book + asset class for a Snowpark backtest PoC with IT sign-off on no-export policy.",
           seRole: "Drives the entire demo -- Python notebook, live execution, performance stats",
           aeRole: "Silent during demo, re-engages on procurement and rollout path"
         },
@@ -198,6 +254,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Cortex LLM pipeline that reads flagged transaction data and generates a draft SAR narrative in FinCEN format. Show the input, show the generated narrative, show the analyst review step.",
           showMoment:
             "Feed in a flagged transaction. Get a FinCEN-formatted SAR narrative draft in 4 seconds. Say: 'Your analysts spend 45 minutes writing this. This is the first draft in 4 seconds -- they review and file.'",
+          businessProblem:
+            "AML ops can’t keep SAR quality and timeliness when alert volume spikes — FinCEN deadlines don’t wait.",
+          economicWhy:
+            "More filings on time with same headcount; lower consent-order and fine exposure from backlog-driven misses.",
+          expectedReaction:
+            "‘This gets us from backlog to review — not from blank page to backlog.’",
+          nextStepTrigger:
+            "Compliance owner: pilot queue + human-in-loop signoff workflow with audit trail for regulators.",
           seRole: "Builds the Cortex LLM pipeline, handles technical compliance Q&A",
           aeRole: "Frames the regulatory liability angle, drives executive conversation"
         },
@@ -221,6 +285,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Side-by-side: a Spark pipeline architecture diagram vs. the same logic rebuilt as Snowflake Dynamic Tables. Show the Dynamic Tables DAG, show refresh latency, show compute cost comparison.",
           showMoment:
             "Trigger a Dynamic Tables refresh on 10M rows. Show latency. Show the DAG. Say: 'This replaced 4 Spark jobs. No cluster to manage. Cost went down 60%.'",
+          businessProblem:
+            "Spark chains duplicate logic, break at scale, and burn infra budget — the same aggregates could refresh natively in Snowflake.",
+          economicWhy:
+            "Direct compute savings and fewer on-call incidents; faster SLAs for downstream risk and reporting consumers.",
+          expectedReaction:
+            "‘If one DAG replaces four Spark jobs, I want this on the risk feed we fight about every month.’",
+          nextStepTrigger:
+            "Replace one production Spark chain on a named risk aggregate — cost/latency checkpoint in two weeks.",
           seRole: "Drives the full demo -- this is a technical buyer conversation",
           aeRole: "Frames the platform consolidation story, handles budget and procurement after"
         },
@@ -245,6 +317,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Streamlit app inside Snowflake showing each advisor their book -- clients ranked by propensity score with next-best-action recommendation, product gap, and suggested talk track. No BI tool, no export.",
           showMoment:
             "Open the app as a simulated advisor. See top 5 clients to call today, why, and what to say. Say: 'Your model exists. It just isn't reaching your advisors in this format.'",
+          businessProblem:
+            "Propensity and NBA models sit in analytics while advisors still prioritize in spreadsheets — revenue left on the table.",
+          economicWhy:
+            "Higher conversion on outbound and cross-sell; measurable AUM lift when the right client gets the right call.",
+          expectedReaction:
+            "‘If this is in the advisor workflow, we finally connect the model to money — not to a report.’",
+          nextStepTrigger:
+            "Wealth leadership: pilot branch or region with adoption metric (logins, calls placed) in 45 days.",
           seRole: "Builds the Streamlit app, handles data pipeline questions",
           aeRole: "Frames advisor productivity and AUM impact, drives exec alignment"
         },
@@ -281,6 +361,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Cortex Analyst on top of pop health data. CAO types 'Which high-risk diabetic members in our ACO had no PCP visit in the last 90 days?' and gets an actionable list with risk scores.",
           showMoment:
             "Type the question. Get the list. Say: 'Your care management team currently gets this from a report that runs weekly. This is live, on demand, no ticket.'",
+          businessProblem:
+            "Care teams can’t act on timely cohorts — weekly reports miss mid-contract gap closure and utilization shifts.",
+          economicWhy:
+            "Stars/HEDIS and shared savings dollars; fewer admits and ED visits when outreach lists are current.",
+          expectedReaction:
+            "‘If care managers can pull this live, we stop explaining why the list was wrong last week.’",
+          nextStepTrigger:
+            "CAO + pop health: one market or line of business with a named quality measure to move in 60 days.",
           seRole: "Builds Cortex Analyst layer, handles Epic/Cerner integration questions",
           aeRole: "Records Loom, frames value-based care contract context, owns exec relationship"
         },
@@ -305,6 +393,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Snowpark ML classification model predicting denial probability at claim submission. Show feature importance (payer + CPT combination most predictive). Show how billers see the score before submission.",
           showMoment:
             "Score a batch of synthetic claims. Show denial probability per claim. Say: 'Your billers currently find out 30 days after submission. This flags it before it leaves your system.'",
+          businessProblem:
+            "Denials surface after submission — rework, delayed cash, and write-offs that could have been fixed upstream.",
+          economicWhy:
+            "Direct margin recovery on claims volume; fewer FTE hours chasing preventable denials.",
+          expectedReaction:
+            "‘If we see probability at submit time, we stop firefighting the same denials 30 days later.’",
+          nextStepTrigger:
+            "Rev cycle owner: pilot on one high-volume CPT or payer with before/after denial rate checkpoint.",
           seRole: "Drives the ML demo, handles technical payer data questions",
           aeRole: "Frames the revenue recovery dollar impact, handles ROI conversation"
         },
@@ -329,6 +425,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Show Bulk FHIR ingestion pipeline landing in Snowflake. Layer a Streamlit analyst app on top -- clinical informatics team queries patient cohorts without touching Epic directly.",
           showMoment:
             "Pull a synthetic patient cohort by diagnosis code. Show the FHIR resource structure. Say: 'Your analysts currently submit a ticket to Epic. This gives them direct access to the same data in a governed environment.'",
+          businessProblem:
+            "Research and analytics wait on Epic tickets — trial and quality cohorts stall while the clock runs.",
+          economicWhy:
+            "More studies and analytics cycles per FTE; faster time-to-insight for UM and quality initiatives.",
+          expectedReaction:
+            "‘If cohorts are governed in Snowflake, we stop being the bottleneck for every analyst request.’",
+          nextStepTrigger:
+            "Clinical informatics + IT: scoped Bulk FHIR pipeline for one domain (e.g. cardiology cohorts) with IRB touchpoint.",
           seRole: "Drives the full demo -- FHIR schema, ingestion pipeline, Streamlit layer",
           aeRole: "Frames the Epic relationship and IT governance angle, handles procurement"
         },
@@ -352,6 +456,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Dynamic Tables pipeline refreshing risk scores daily from incoming claims + labs. Snowpark ML model scoring members. Show the DAG, show refresh latency, show how scores land in a care manager app.",
           showMoment:
             "Trigger a refresh. Show updated risk scores in under 60 seconds. Say: 'Your current batch runs Sunday night. A member could have an ED visit Monday and your care managers won't see the risk flag until next week.'",
+          businessProblem:
+            "Weekly risk scores miss same-week utilization — care management can’t prioritize who to call today.",
+          economicWhy:
+            "Quality bonuses and readmission penalties; better targeting lowers cost of care per member.",
+          expectedReaction:
+            "‘Daily scores change who we call first — that’s dollars and member outcomes, not a dashboard preference.’",
+          nextStepTrigger:
+            "Pop health leadership: daily refresh pilot vs weekly batch on one panel with gap-closure metric.",
           seRole: "Builds Dynamic Tables pipeline and ML scoring layer",
           aeRole: "Frames care gap and quality measure impact, handles VBC contract alignment"
         },
@@ -376,6 +488,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Dynamic Data Masking policies on PHI fields -- show analyst role seeing de-identified view, admin seeing full record. Layer Clean Room showing a researcher querying aggregate outcomes without accessing individual records.",
           showMoment:
             "Log in as analyst. Show masked PHI. Log in as admin. Show full record. Run clean room query. Say: 'One dataset, three different views, zero PHI exposure to the research team. Your IRB office can audit the policy.'",
+          businessProblem:
+            "Research and operations need the same truth with different PHI rules — manual processes block studies and analytics.",
+          economicWhy:
+            "Faster IRB approval and fewer compliance review cycles; one platform story reduces duplicate tooling.",
+          expectedReaction:
+            "‘If IRB can audit this policy once, we accelerate every study that was stuck in access review.’",
+          nextStepTrigger:
+            "Security + research: narrow cohort proof with audit log — expand to additional use cases on success.",
           seRole: "Builds masking policies and clean room, handles security architecture Q&A",
           aeRole: "Frames IRB and HIPAA compliance angle, owns CIO/CISO relationship"
         },
@@ -413,6 +533,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Streaming pipeline from synthetic OSIsoft PI / InfluxDB historian into Snowflake Dynamic Tables. Streamlit dashboard showing real-time sensor readings, anomaly flags, and maintenance alerts across lines.",
           showMoment:
             "Show all 3 lines live. Trigger a synthetic anomaly. Watch the flag appear on the dashboard. Say: 'Your maintenance team currently finds out after the line goes down. This flags it 4 hours before.'",
+          businessProblem:
+            "Maintenance learns about failures after downtime — sensor truth never reaches the decision layer in time.",
+          economicWhy:
+            "Unplanned downtime and scrap cost; extending asset life and reducing emergency crew overtime.",
+          expectedReaction:
+            "‘If we see this before the line stops, we can finally schedule maintenance instead of reacting.’",
+          nextStepTrigger:
+            "Ops + plant IT: one line historian → Snowflake pilot with MTBF or downtime minutes as the scorecard.",
           seRole: "Drives full OT demo -- pipeline architecture, Dynamic Tables, Streamlit",
           aeRole: "Frames predictive maintenance ROI and IT/OT governance story"
         },
@@ -436,6 +564,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Cortex Analyst on top of supplier risk data joined with Marketplace feeds. CSCO asks 'Which tier-1 suppliers in Southeast Asia have a financial health score below 60 and single-source dependency?' and gets an answer.",
           showMoment:
             "Type the question. Get the at-risk supplier list with scores. Say: 'Your procurement team built a spreadsheet for this after the last disruption. This is live, always current, and connected to external signals.'",
+          businessProblem:
+            "Execs lack live supplier concentration and risk — post-disruption, spreadsheets lag reality.",
+          economicWhy:
+            "Avoid line stoppage and expedite costs; better negotiate terms when risk is visible before failure.",
+          expectedReaction:
+            "‘This is what we needed in the last board review — not a week-old spreadsheet.’",
+          nextStepTrigger:
+            "CSCO: tier-1 supplier review with procurement lead — tie to one sourcing decision or QBR.",
           seRole: "Builds Marketplace data joins and Cortex Analyst layer",
           aeRole: "Records Loom, frames supply chain risk and board-level visibility angle"
         },
@@ -460,6 +596,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Snowpark ML model identifying root cause features for defect clusters. Cortex Search on quality records -- quality engineer types a lot number and gets full traceability from raw material to customer shipment.",
           showMoment:
             "Search a lot number. Get the full chain. Run the ML root cause analysis. Say: 'Your quality team currently traces this manually across 4 systems. This is one query.'",
+          businessProblem:
+            "Defect investigations span systems — every hour of trace delay extends line holds and customer exposure.",
+          economicWhy:
+            "Smaller recall scope, faster CAPA closure, and lower warranty / liability cost.",
+          expectedReaction:
+            "‘One search for the full chain — that’s what we lose half a shift chasing today.’",
+          nextStepTrigger:
+            "Quality + ops: pilot on one product family with lot-level trace SLA as success metric.",
           seRole: "Drives traceability demo and ML root cause model",
           aeRole: "Frames cost of recall and regulatory compliance angle, handles procurement"
         },
@@ -484,6 +628,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Dynamic Tables pipeline keeping digital twin state current from sensor feeds. Streamlit app showing live process parameter visualization and what-if simulation (change feed rate to see predicted output quality change).",
           showMoment:
             "Adjust a process parameter in the what-if simulator. Watch the predicted output change. Say: 'Your digital twin initiative stalled because the data wasn't accessible. This is the data foundation that makes it run.'",
+          businessProblem:
+            "Digital twin programs stall — process parameters aren’t current in one place, so simulation can’t track reality.",
+          economicWhy:
+            "Higher yield and less scrap; programs ship faster when engineering trusts the twin.",
+          expectedReaction:
+            "‘If the twin stays in sync with the line, we can justify the next phase of investment.’",
+          nextStepTrigger:
+            "Digital manufacturing sponsor: one line with live feed + what-if tied to a named OEE or quality KPI.",
           seRole: "Builds Dynamic Tables feed and Streamlit what-if simulator",
           aeRole: "Frames digital twin program alignment and IT architecture conversation"
         },
@@ -507,6 +659,14 @@ export const INDUSTRY_PLAYBOOKS: Record<PlaybookKey, IndustryPlaybook> = {
             "Cortex Analyst on top of plant financial data. FP&A analyst types 'Which plants had COGS variance greater than 8% in Q1 and what drove it?' and gets an answer with drill-down.",
           showMoment:
             "Type the question. Get the variance analysis with plant breakdown. Say: 'Your team currently builds this in Excel over 3 days after month-end close. This runs in 4 seconds on live data.'",
+          businessProblem:
+            "Plant FP&A burns days after close consolidating variance — leadership gets answers too late to act.",
+          economicWhy:
+            "Faster close and fewer correction cycles; finance and ops align earlier on corrective actions.",
+          expectedReaction:
+            "‘We’d actually use this in the first week after close instead of debating whose Excel is right.’",
+          nextStepTrigger:
+            "FP&A + plant controller: close the loop on one recurring variance driver with exec readout.",
           seRole: "Builds Cortex Analyst layer and financial data model",
           aeRole: "Frames month-end close acceleration and CFO visibility story, records Loom"
         },

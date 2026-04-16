@@ -1,7 +1,7 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
-import { Anchor, Database, Video, Wrench, Zap } from "lucide-react";
+import { Anchor, Database, Flag, MessageSquareQuote, Target, TrendingUp, Video, Wrench, Zap } from "lucide-react";
 import type { AccountConfig, AccountUseCase, Persona } from "@/types";
 
 function LoomLeadBadge({ lead }: { lead: Persona["loomLead"] }) {
@@ -110,11 +110,34 @@ export function DemoPanel({
         <div>
           <div className="text-sm font-semibold text-sf-foreground">Demo recipe</div>
           <div className="text-xs text-sf-foreground-muted">
-            Built for a fast show moment and a clean AE/SE handoff.
+            Deal acceleration — proof the buyer can feel, not a feature tour.
           </div>
         </div>
         <div className="flex items-center gap-3">
           <LoomLeadBadge lead={selectedPersona.loomLead} />
+        </div>
+      </div>
+
+      <div
+        className="rounded-xl border bg-white p-5 shadow-panel"
+        style={{ borderColor: `${account.color}55`, borderLeftWidth: 4 }}
+      >
+        <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
+          <Target className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden />
+          Business framing
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          <div>
+            <div className="text-xs font-semibold text-sf-foreground">What problem this demo solves</div>
+            <p className="mt-2 text-sm leading-relaxed text-sf-foreground">{selectedPersona.demoRecipe.businessProblem}</p>
+          </div>
+          <div>
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-sf-foreground">
+              <TrendingUp className="h-3.5 w-3.5 text-sf-foreground-muted" strokeWidth={2} aria-hidden />
+              Why it matters economically
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-sf-foreground">{selectedPersona.demoRecipe.economicWhy}</p>
+          </div>
         </div>
       </div>
 
@@ -141,6 +164,23 @@ export function DemoPanel({
           <Section label="Data to use" value={selectedPersona.demoRecipe.data} Icon={Database} />
           <Section label="What to build" value={selectedPersona.demoRecipe.build} Icon={Wrench} />
           <Section label="The show moment" value={selectedPersona.demoRecipe.showMoment} Icon={Zap} />
+        </div>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-xl border border-sf-border bg-sf-surface-muted/40 p-4 shadow-panel">
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
+            <MessageSquareQuote className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden />
+            Expected reaction
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-sf-foreground">{selectedPersona.demoRecipe.expectedReaction}</p>
+        </div>
+        <div className="rounded-xl border border-sf-border bg-sf-surface-muted/40 p-4 shadow-panel">
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
+            <Flag className="h-3.5 w-3.5 shrink-0" strokeWidth={2} aria-hidden />
+            Next step trigger
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-sf-foreground">{selectedPersona.demoRecipe.nextStepTrigger}</p>
         </div>
       </div>
 
