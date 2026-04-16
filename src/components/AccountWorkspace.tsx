@@ -18,13 +18,13 @@ import {
 import type { AccountConfig, AccountUseCase, EmailDraft, MotionKey, Persona } from "@/types";
 import { MOTION_DISPLAY } from "@/lib/motionLabels";
 
-function Kpi({ label, value }: { label: string; value: ReactNode }) {
+function Kpi({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="min-w-0 border-l border-sf-border pl-3">
       <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
         {label}
       </div>
-      <div className="mt-1 truncate text-sm font-semibold text-sf-foreground">{value}</div>
+      <div className="mt-1 truncate text-sm font-semibold text-sf-foreground">{children}</div>
     </div>
   );
 }
