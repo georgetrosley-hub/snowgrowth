@@ -99,7 +99,7 @@ function AppInner() {
     const parts: string[] = [];
     if (selectedPersona) parts.push(selectedPersona.title);
     if (selectedUseCase) parts.push(selectedUseCase.title);
-    if (parts.length === 0) return "Territory brief → personas → plays";
+    if (parts.length === 0) return "Territory brief → stakeholders → wedges";
     return parts.join(" · ");
   }, [selectedPersona, selectedUseCase]);
 
@@ -131,12 +131,12 @@ function AppInner() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `outreach-${safe(persona)}-${safe(useCase)}.txt`;
+      a.download = `touch-${safe(persona)}-${safe(useCase)}.txt`;
       document.body.appendChild(a);
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
-      toast.push({ tone: "success", title: "Exported .txt" });
+      toast.push({ tone: "success", title: "Touch saved as .txt" });
     },
     [selectedPersona?.title, selectedUseCase?.id, toast]
   );
@@ -179,7 +179,7 @@ function AppInner() {
               Territory Operating Console
             </div>
             <div className="truncate text-xs text-sf-foreground-muted">
-              Named accounts · tiered coverage · persona → demo → outreach
+              Named accounts · tiered coverage · stakeholder → wedge → demo → touch
             </div>
           </div>
         </div>
@@ -205,7 +205,7 @@ function AppInner() {
                 </div>
                 <div className="text-xl font-semibold text-sf-foreground">No account data</div>
                 <div className="mt-2 text-sm text-sf-foreground-muted">
-                  Add accounts in the data layer, then reload.
+                  No accounts in the data layer yet — add them and refresh.
                 </div>
               </div>
             </div>
@@ -275,12 +275,12 @@ function AppInner() {
 
                 <div className="mt-10 flex flex-col gap-3 rounded-xl border border-sf-border bg-white p-5 shadow-panel sm:flex-row sm:items-center sm:justify-between">
                   <div className="text-sm text-sf-foreground-muted">
-                    <span className="font-semibold text-sf-foreground">Next step:</span>{" "}
+                    <span className="font-semibold text-sf-foreground">Move next:</span>{" "}
                     {!selectedPersona
-                      ? "Pick a persona (or select a use case to load one)."
+                      ? "Target a stakeholder (or lead with a wedge to load one)."
                       : !selectedUseCase
-                        ? "Pick an account use case to generate outreach."
-                        : "Copy or export the outreach email."}
+                        ? "Lead with a wedge to draft the touch."
+                        : "Copy the lines, then send this."}
                   </div>
                   <div className="flex flex-col gap-2 sm:flex-row">
                     <button
@@ -295,21 +295,21 @@ function AppInner() {
                       onClick={() => setActiveTab("personas")}
                       className="rounded-lg border border-sf-border bg-white px-4 py-2 text-sm font-semibold text-sf-foreground shadow-sm transition hover:bg-sf-surface-muted"
                     >
-                      Personas
+                      Stakeholders
                     </button>
                     <button
                       type="button"
                       onClick={() => setActiveTab("usecases")}
                       className="rounded-lg border border-sf-border bg-white px-4 py-2 text-sm font-semibold text-sf-foreground shadow-sm transition hover:bg-sf-surface-muted"
                     >
-                      Use cases
+                      Wedges
                     </button>
                     <button
                       type="button"
                       onClick={() => setActiveTab("outreach")}
                       className="rounded-lg border border-sf-border bg-sf-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sf-primary-deep"
                     >
-                      Outreach
+                      Touch
                     </button>
                   </div>
                 </div>

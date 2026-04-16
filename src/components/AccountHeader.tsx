@@ -8,10 +8,10 @@ const TABS: TabKey[] = ["territory", "deal-view", "personas", "usecases", "demo"
 const TAB_LABELS: Record<TabKey, string> = {
   territory: "Territory",
   "deal-view": "Deal View",
-  personas: "Personas",
-  usecases: "Use Cases",
-  demo: "Demo Recipe",
-  outreach: "Outreach",
+  personas: "Stakeholders",
+  usecases: "Wedges",
+  demo: "Demo",
+  outreach: "Touch",
   "exec-triggers": "Exec Triggers"
 };
 
@@ -38,7 +38,7 @@ export function AccountHeader({
             <TerritoryGlyph iconKey={account.iconKey} size={18} />
           </div>
           <div className="min-w-0 text-xs text-sf-foreground-muted">
-            <span className="font-medium text-sf-foreground">{"Plays & library"}</span>
+            <span className="font-medium text-sf-foreground">Territory run</span>
             <span className="mx-1.5 text-slate-300">·</span>
             <span className="truncate">{breadcrumb}</span>
           </div>
@@ -46,7 +46,7 @@ export function AccountHeader({
 
         <div className="hidden items-center gap-2 md:flex">
           <div className="h-2 w-2 rounded-full" style={{ backgroundColor: account.color }} />
-          <div className="text-xs text-sf-foreground-muted">This workspace follows the account above</div>
+          <div className="text-xs text-sf-foreground-muted">Everything below is this account</div>
         </div>
       </div>
 

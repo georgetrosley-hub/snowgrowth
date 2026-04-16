@@ -29,7 +29,7 @@ export function ExecTriggersPanel({ account }: { account: AccountConfig }) {
               <span className="font-semibold text-sf-foreground">
                 {`"[Account] + ${trigger.split(" ").slice(0, 3).join(" ")}"`}
               </span>{" "}
-              on Google News and LinkedIn before outreach.
+              on Google News and LinkedIn before you reach out.
             </div>
           </div>
         </div>

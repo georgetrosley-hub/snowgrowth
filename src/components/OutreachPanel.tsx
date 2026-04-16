@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { Layers, User } from "lucide-react";
 import type { AccountConfig, AccountUseCase, EmailDraft, MotionKey, Persona } from "@/types";
+import { MOTION_DISPLAY } from "@/lib/motionLabels";
 
 function Pill({
   children,
@@ -49,9 +50,9 @@ export function OutreachPanel({
   if (!selectedPersona || !selectedUseCase || !email) {
     return (
       <div className="animate-fade-in rounded-xl border border-sf-border bg-white p-8 text-center shadow-panel">
-        <div className="text-sm font-semibold text-sf-foreground">Select a persona and account use case</div>
+        <div className="text-sm font-semibold text-sf-foreground">Lock a stakeholder and a wedge</div>
         <div className="mt-1 text-sm text-sf-foreground-muted">
-          We’ll generate an outreach email draft for this account’s wedge and proving persona.
+          Draft the touch for this account’s workload and proving stakeholder — run this motion from the left rail.
         </div>
         <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
           <button
@@ -59,14 +60,14 @@ export function OutreachPanel({
             onClick={onPickPersona}
             className="rounded-lg border border-sf-border bg-white px-4 py-2 text-sm font-semibold text-sf-foreground shadow-sm transition hover:bg-sf-surface-muted"
           >
-            Persona
+            Target stakeholder
           </button>
           <button
             type="button"
             onClick={onPickUseCase}
             className="rounded-lg border border-sf-border bg-white px-4 py-2 text-sm font-semibold text-sf-foreground shadow-sm transition hover:bg-sf-surface-muted"
           >
-            Use case
+            Lead with workload
           </button>
         </div>
       </div>
@@ -89,7 +90,7 @@ export function OutreachPanel({
             className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold"
             style={{ borderColor: `${account.color}44`, backgroundColor: `${account.color}12`, color: account.color }}
           >
-            {motion}
+            {MOTION_DISPLAY[motion]}
           </div>
         </div>
       </div>
@@ -104,7 +105,7 @@ export function OutreachPanel({
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="text-sm font-semibold text-sf-foreground">Subject</div>
-            <div className="text-xs text-sf-foreground-muted">Copy into your email client.</div>
+            <div className="text-xs text-sf-foreground-muted">Paste into your mail — or read it live.</div>
           </div>
           <button
             type="button"
@@ -123,7 +124,7 @@ export function OutreachPanel({
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="text-sm font-semibold text-sf-foreground">Email body</div>
-            <div className="text-xs text-sf-foreground-muted">Personalize the bracket fields, then send.</div>
+            <div className="text-xs text-sf-foreground-muted">Fill the brackets, then send this.</div>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row">
             <button
@@ -138,7 +139,7 @@ export function OutreachPanel({
               onClick={() => onExportTxt(email)}
               className="rounded-lg border border-sf-border bg-sf-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-sf-primary-deep"
             >
-              Export .txt
+              Save touch (.txt)
             </button>
           </div>
         </div>
@@ -158,11 +159,11 @@ export function OutreachPanel({
         </div>
 
         <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-950">
-          <div className="text-xs font-semibold text-amber-900">Next step before sending</div>
+          <div className="text-xs font-semibold text-amber-900">Before you hit send</div>
           <div className="mt-2 text-amber-900/90">
             Search: <span className="font-semibold text-amber-950">{`"[Account] + ${account.execTriggers[0]?.split(" ").slice(0, 4).join(" ") ?? "news"}]"`}</span>
             {" "}
-            on Google News and LinkedIn before outreach.
+            on Google News and LinkedIn so the opener lands.
           </div>
         </div>
       </div>

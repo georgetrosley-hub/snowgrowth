@@ -51,16 +51,17 @@ export function DemoPanel({
   if (!selectedPersona) {
     return (
       <div className="animate-fade-in rounded-xl border border-sf-border bg-white p-8 text-center shadow-panel">
-        <div className="text-sm font-semibold text-sf-foreground">Select a persona first</div>
+        <div className="text-sm font-semibold text-sf-foreground">Name a stakeholder first</div>
         <div className="mt-1 text-sm text-sf-foreground-muted">
-          Demos are persona-specific. Pick a use case on the Use cases tab to load the proving persona for a wedge.
+          Demos follow the person in the room. Lead with a wedge on the Wedges tab to load the proving stakeholder, or
+          open Stakeholders.
         </div>
         <button
           type="button"
           onClick={onPickPersona}
           className="mt-5 inline-flex items-center justify-center rounded-lg border border-sf-border bg-white px-4 py-2 text-sm font-semibold text-sf-foreground shadow-sm transition hover:bg-sf-surface-muted"
         >
-          Pick persona
+          Target stakeholder
         </button>
       </div>
     );
@@ -84,24 +85,24 @@ export function DemoPanel({
           <div className="font-semibold text-sf-foreground">Proof point alignment · {account.name}</div>
           <p className="mt-1 text-xs text-sf-foreground-muted">{account.proof_point}</p>
           <p className="mt-2 text-xs text-sf-foreground">
-            <span className="font-semibold">Use case:</span> {selectedUseCase.title}
+            <span className="font-semibold">Wedge:</span> {selectedUseCase.title}
           </p>
           {misaligned ? (
             <p className="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-950">
               This wedge is proven with the <span className="font-semibold">{misaligned.title}</span> demo (
               {selectedUseCase.first_workload.slice(0, 80)}
-              …). Switch persona or re-select the use case to match.
+              …). Switch stakeholder or re-lock the wedge to match.
             </p>
           ) : (
             <p className="mt-2 text-xs font-medium text-emerald-800">
-              Demo matches the proving persona for this use case.
+              Demo matches the proving stakeholder for this wedge.
             </p>
           )}
         </div>
       ) : (
         <div className="rounded-xl border border-sf-border bg-white p-4 text-sm text-sf-foreground-muted shadow-panel">
-          Select a <span className="font-semibold text-sf-foreground">use case</span> for {account.name} to tie this demo to a wedge and
-          the account proof point.
+          Lead with a <span className="font-semibold text-sf-foreground">wedge</span> for {account.name} to tie this demo to a workload and
+          the proof point.
         </div>
       )}
 
@@ -109,7 +110,7 @@ export function DemoPanel({
         <div>
           <div className="text-sm font-semibold text-sf-foreground">Demo recipe</div>
           <div className="text-xs text-sf-foreground-muted">
-            Optimized for fast “show moment” delivery and clean AE/SE handoff.
+            Built for a fast show moment and a clean AE/SE handoff.
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -169,7 +170,7 @@ export function DemoPanel({
               Loom script <span className="text-sf-foreground-muted">({selectedPersona.loomLead} records)</span>
             </div>
             <div className="text-xs text-sf-foreground-muted">
-              Copy, paste, personalize. Keep it short and concrete.
+              Paste, tighten, send. Keep it short.
             </div>
           </div>
           <button

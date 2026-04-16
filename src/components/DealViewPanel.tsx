@@ -48,7 +48,7 @@ export function DealViewPanel({ account }: { account: AccountConfig }) {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <IntelBlock label="Entry point (first persona)" value={d.entryPoint} Icon={UserCircle2} accent="font-medium" />
+        <IntelBlock label="Entry point (first stakeholder)" value={d.entryPoint} Icon={UserCircle2} accent="font-medium" />
         <IntelBlock label="Economic buyer" value={d.economicBuyer} Icon={BadgeDollarSign} />
         <IntelBlock label="Technical buyer" value={d.technicalBuyer} Icon={Cpu} />
         <IntelBlock label="Key risk" value={d.keyRisk} Icon={AlertTriangle} />

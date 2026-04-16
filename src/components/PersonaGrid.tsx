@@ -42,16 +42,16 @@ export const PersonaGrid = memo(function PersonaGrid({
     <div className="animate-fade-in">
       <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div className="min-w-0">
-          <div className="text-sm font-semibold text-sf-foreground">Pick a persona</div>
+          <div className="text-sm font-semibold text-sf-foreground">Target a stakeholder</div>
           <div className="text-xs text-sf-foreground-muted">
-            Account-specific roster for <span className="font-medium text-sf-foreground">{account.name}</span> — drives
-            demo recipe and Loom script.
+            Who you’re in front of at <span className="font-medium text-sf-foreground">{account.name}</span> — sets the
+            demo script and Loom.
           </div>
         </div>
 
         <div className="w-full md:w-96">
           <label className="sr-only" htmlFor="persona-search">
-            Search personas
+            Filter stakeholders
           </label>
           <input
             id="persona-search"
@@ -135,7 +135,7 @@ export const PersonaGrid = memo(function PersonaGrid({
                     <span className="font-semibold text-sf-foreground">{p.loomLead}</span>
                   </div>
                   <div className="rounded-md border border-sf-border bg-sf-surface-muted px-2 py-1 text-sf-foreground opacity-0 transition group-hover:opacity-100">
-                    Next: Demo
+                    Open demo
                   </div>
                 </div>
               </button>

@@ -2,6 +2,7 @@
 
 import type { AccountConfig, MotionKey, Persona } from "@/types";
 import { TerritoryGlyph } from "@/components/icons/TerritoryGlyph";
+import { MOTION_DISPLAY } from "@/lib/motionLabels";
 
 const MOTIONS: MotionKey[] = [
   "Mix of all three",
@@ -103,15 +104,15 @@ export function Sidebar({
 
       <div className="mt-6 rounded-xl border border-sf-border bg-white p-3 shadow-panel">
         <div className="flex items-center justify-between">
-          <div className="text-xs font-semibold text-sf-foreground">Progress</div>
+          <div className="text-xs font-semibold text-sf-foreground">Coverage</div>
           <div className="text-[11px] text-sf-foreground-muted">Step {currentStep} of 3</div>
         </div>
 
         <div className="mt-3 grid grid-cols-3 gap-2 text-[11px]">
           {[
-            { label: "Persona", done: Boolean(selectedPersona) },
-            { label: "Use case", done: Boolean(selectedUseCaseId) },
-            { label: "Outreach", done: Boolean(selectedPersona && selectedUseCaseId) }
+            { label: "Stakeholder", done: Boolean(selectedPersona) },
+            { label: "Wedge", done: Boolean(selectedUseCaseId) },
+            { label: "Touch", done: Boolean(selectedPersona && selectedUseCaseId) }
           ].map((s, idx) => (
             <div
               key={s.label}
@@ -133,7 +134,7 @@ export function Sidebar({
       {selectedAccount ? (
         <>
           <div className="mt-6 text-[11px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
-            Motion
+            Run this motion
           </div>
 
           <div className="mt-3 flex flex-col gap-1">
@@ -151,7 +152,7 @@ export function Sidebar({
                       : "text-sf-foreground-muted hover:bg-white/80 hover:text-sf-foreground"
                   ].join(" ")}
                 >
-                  {m}
+                  {MOTION_DISPLAY[m]}
                 </button>
               );
             })}
@@ -169,7 +170,7 @@ export function Sidebar({
                 className="text-[11px] font-semibold uppercase tracking-[0.14em]"
                 style={{ color: selectedAccount.color }}
               >
-                Selected persona
+                Target stakeholder
               </div>
               <div className="mt-1 text-sm font-semibold text-sf-foreground">{selectedPersona.title}</div>
               <div className="mt-0.5 text-xs text-sf-foreground-muted">
@@ -178,18 +179,18 @@ export function Sidebar({
             </div>
           ) : (
             <div className="mt-6 rounded-xl border border-sf-border bg-white p-3 text-sm text-sf-foreground-muted shadow-panel">
-              Pick a persona to unlock the demo recipe and outreach flow.
+              Name a stakeholder to pull the demo script and touch.
             </div>
           )}
         </>
       ) : (
         <div className="mt-6 rounded-xl border border-sf-border bg-white p-3 text-sm text-sf-foreground-muted shadow-panel">
-          Choose an account to load territory context.
+          Open an account to load territory context.
         </div>
       )}
 
       <div className="mt-auto pt-6 text-xs text-sf-foreground-muted">
-        Territory console — account → persona → demo → outreach.
+        Account → stakeholder → wedge → demo → touch.
       </div>
     </aside>
   );

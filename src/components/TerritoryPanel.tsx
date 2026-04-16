@@ -41,7 +41,7 @@ export function TerritoryPanel({ account }: { account: AccountConfig }) {
       <div>
         <div className="text-sm font-semibold text-sf-foreground">Territory operating picture</div>
         <div className="mt-1 text-xs text-sf-foreground-muted">
-          Why this account, what to fix first, and how expansion should flow. Personas and plays load below.
+          Why this account, what to fix first, and how expansion runs. Stakeholders and wedges sit in the tabs below.
         </div>
       </div>
 
