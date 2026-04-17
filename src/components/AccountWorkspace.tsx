@@ -5,7 +5,9 @@ import {
   ArrowRight,
   Check,
   Copy,
+  Database,
   Download,
+  FileText,
   Gauge,
   Mail,
   Play,
@@ -36,6 +38,28 @@ function BriefPoint({ label, children }: { label: string; children: ReactNode })
         {label}
       </div>
       <div className="mt-1 text-sm leading-relaxed text-sf-foreground">{children}</div>
+    </div>
+  );
+}
+
+function DataSignal({
+  label,
+  value,
+  icon: Icon
+}: {
+  label: string;
+  value: ReactNode;
+  icon: typeof Database;
+}) {
+  return (
+    <div className="flex gap-3 border-l border-sf-border pl-3">
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-sf-foreground-muted" strokeWidth={2} aria-hidden />
+      <div className="min-w-0">
+        <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
+          {label}
+        </div>
+        <div className="mt-1 text-sm font-medium leading-snug text-sf-foreground">{value}</div>
+      </div>
     </div>
   );
 }
@@ -207,6 +231,43 @@ export function AccountWorkspace({
       </section>
 
       <div className="space-y-6 px-5 py-6 sm:px-6 lg:px-8">
+        <section className="rounded-lg border border-sf-border bg-white p-5 shadow-panel">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 text-sm font-semibold text-sf-foreground">
+                <Database className="h-4 w-4 text-sf-foreground-muted" aria-hidden />
+                Snowflake operating layer
+              </div>
+              <p className="mt-1 max-w-3xl text-xs leading-relaxed text-sf-foreground-muted">
+                Treat this as the account-facing view of governed usage, executive triggers, and workload readiness.
+              </p>
+            </div>
+            <div
+              className="shrink-0 rounded-md px-2.5 py-1 text-xs font-semibold"
+              style={{ backgroundColor: `${account.color}18`, color: account.color }}
+            >
+              Production motion
+            </div>
+          </div>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <DataSignal
+              icon={Database}
+              label="Data plane"
+              value={`${account.pipelineSnapshot.firstMeetingTarget} + ${selectedPersona?.dept ?? "target function"}`}
+            />
+            <DataSignal
+              icon={Gauge}
+              label="Workload"
+              value={selectedUseCase?.first_workload ?? account.first_workload}
+            />
+            <DataSignal
+              icon={FileText}
+              label="Evidence"
+              value={account.proof_point}
+            />
+          </div>
+        </section>
+
         <section className="grid gap-5 xl:grid-cols-[0.8fr_1.2fr]">
           <div className="rounded-lg border border-sf-border bg-white p-5 shadow-panel">
             <div className="flex items-start justify-between gap-4">
