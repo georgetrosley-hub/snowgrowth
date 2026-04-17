@@ -8,7 +8,10 @@
     "dev": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next dev",
     "build": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next build",
     "start": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next start",
-    "lint": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next lint"
+    "lint": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" next lint",
+    "typecheck": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" tsc --noEmit",
+    "test": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" vitest run",
+    "test:watch": "PATH=\"$PWD/node_modules/.bin:$PWD/.tools:$PATH\" vitest"
   },
   "dependencies": {
     "lucide-react": "0.544.0",
@@ -26,6 +29,7 @@
     "eslint-config-next": "15.5.9",
     "postcss": "8.5.6",
     "tailwindcss": "3.4.17",
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "vitest": "3.2.4"
   }
 }
