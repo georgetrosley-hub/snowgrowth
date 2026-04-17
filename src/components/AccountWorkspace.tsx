@@ -133,42 +133,75 @@ export function AccountWorkspace({
   return (
     <div className="min-h-[calc(100vh-73px)] bg-sf-surface-muted">
       <section
-        className="border-b border-sf-border bg-white px-5 py-5 sm:px-6 lg:px-8"
+        className="border-b border-sf-border bg-white px-5 py-6 sm:px-6 lg:px-8"
         style={{ borderTopColor: account.color, borderTopWidth: 3 }}
       >
-        <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
+        <div className="grid gap-6 xl:grid-cols-[1fr_25rem] xl:items-start">
           <div className="min-w-0">
             <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
-              Account
+              Expansion motion
             </div>
             <h1 className="mt-1 truncate text-2xl font-semibold tracking-tight text-sf-foreground md:text-3xl">
               {account.name}
             </h1>
-            <p className="mt-2 max-w-4xl text-sm leading-relaxed text-sf-foreground-muted">
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-sf-foreground-muted">
               <span className="font-semibold text-sf-foreground">{account.industry}</span>
               {" - "}
               {account.briefDescriptor}
             </p>
+            <div className="mt-5 max-w-4xl border-l-2 pl-4" style={{ borderColor: account.color }}>
+              <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
+                Account thesis
+              </div>
+              <p className="mt-1 text-base font-semibold leading-snug text-sf-foreground">
+                {account.hypothesis}
+              </p>
+            </div>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 xl:w-[34rem]">
-            <Kpi label="ACV">{account.pipelineSnapshot.estimatedAcvRange}</Kpi>
-            <Kpi label="Likelihood">
+          <div className="rounded-lg border border-sf-border bg-sf-surface-muted p-4">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-sf-foreground-muted">
+                  Ready state
+                </div>
+                <div className="mt-1 text-sm font-semibold text-sf-foreground">
+                  {email ? "Touch is ready" : "Complete the path"}
+                </div>
+              </div>
               <span
-                className={[
-                  "rounded-md border px-2 py-0.5 text-xs",
-                  account.pipelineSnapshot.dealLikelihood === "High"
-                    ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-                    : account.pipelineSnapshot.dealLikelihood === "Medium"
-                      ? "border-amber-200 bg-amber-50 text-amber-950"
-                      : "border-sf-border bg-sf-surface-muted text-sf-foreground"
-                ].join(" ")}
+                className="rounded-md px-2 py-1 text-xs font-semibold"
+                style={{ backgroundColor: `${account.color}18`, color: account.color }}
               >
                 {account.pipelineSnapshot.dealLikelihood}
               </span>
-            </Kpi>
-            <Kpi label="Timeline">{account.pipelineSnapshot.timeline}</Kpi>
-            <Kpi label="First meeting">{account.pipelineSnapshot.firstMeetingTarget}</Kpi>
+            </div>
+
+            <div className="mt-4 grid gap-3">
+              <Kpi label="ACV">{account.pipelineSnapshot.estimatedAcvRange}</Kpi>
+              <Kpi label="Timeline">{account.pipelineSnapshot.timeline}</Kpi>
+              <Kpi label="First meeting">{account.pipelineSnapshot.firstMeetingTarget}</Kpi>
+            </div>
+
+            <div className="mt-5 flex flex-col gap-2">
+              {email ? (
+                <>
+                  <ActionButton onClick={copyTouch} primary>
+                    <Copy className="h-4 w-4" aria-hidden />
+                    Copy touch
+                  </ActionButton>
+                  <ActionButton onClick={() => onExportTxt(email)}>
+                    <Download className="h-4 w-4" aria-hidden />
+                    Save .txt
+                  </ActionButton>
+                </>
+              ) : (
+                <ActionButton onClick={onUseRecommendedPath} primary>
+                  <Sparkles className="h-4 w-4" aria-hidden />
+                  Use recommended path
+                </ActionButton>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -180,7 +213,7 @@ export function AccountWorkspace({
               <div className="min-w-0">
                 <div className="flex items-center gap-2 text-sm font-semibold text-sf-foreground">
                   <Sparkles className="h-4 w-4" style={{ color: account.color }} aria-hidden />
-                  Best first move
+                  Recommended path
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-sf-foreground-muted">
                   {primaryPersona?.title ?? "Target stakeholder"} through{" "}

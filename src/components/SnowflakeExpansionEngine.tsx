@@ -183,18 +183,16 @@ function AppInner() {
       <header className="border-b border-sf-border bg-sf-surface">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-6 py-4">
           <ProductMark className="h-10 w-10 shrink-0" size={40} priority />
-          {showLanding ? (
-            <span className="sr-only">Expansion Territory Operating Plan</span>
-          ) : (
-            <div className="min-w-0">
-              <div className="truncate text-base font-semibold tracking-tight text-sf-foreground">
-                Expansion workspace
-              </div>
-              <div className="truncate text-xs text-sf-foreground-muted">
-                Account brief, stakeholder, wedge, demo, touch
-              </div>
+          <div className="min-w-0">
+            <div className="truncate text-base font-semibold tracking-tight text-sf-foreground">
+              Snowgrowth
             </div>
-          )}
+            <div className="truncate text-xs text-sf-foreground-muted">
+              {showLanding
+                ? "Expansion workspace"
+                : "Account brief, stakeholder, wedge, demo, touch"}
+            </div>
+          </div>
         </div>
       </header>
 
